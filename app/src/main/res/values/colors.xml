@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4D2B78</color>
+    <color name="colorPrimaryDark">#412466</color>
+    <color name="colorAccent">#36DEAB</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="whiteOpacity50">#80ffffff</color>
+    <color name="blackOpacity50">#80000000</color>
+
+
+    <color name="fontColor">#3E3E3E</color>
+    <color name="fontColorGrey">#707070</color>
+    <color name="fontColorPrimary">#4D2B77</color>
+    <color name="separator">#434343</color>
+
+
+    <color name="transparent">#00000000</color>
+
+    <color name="colorBlackTransparent">#8C000000</color>
+    <color name="orange">#F39C12</color>
+    <color name="backgroundColor">#F3F3F3</color>
+
+    <color name="grey_hint">#8E8E93</color>
+    <color name="colorAccentBGOpacity50">#8036DEAB</color>
+
+    <color name="colorError">#DE3208</color>
+    <color name="colorOfferBorder">#FF7878</color>
+</resources>

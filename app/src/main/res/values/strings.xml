@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">City Guide</string>
+    <string name="share_fail">Share failed</string>
+
+    <!--Volley Errors-->
+    <string name="error_no_internet_connection">@string/noInternet</string>
+    <string name="error_timeout">@string/errorMsg</string>
+    <string name="error_unknown_error_occurred">@string/somethingWrong</string>
+    <string name="error_server_error">@string/somethingWrong</string>
+    <string name="somethingWrong">Sorry, Something went wrong</string>
+    <string name="noInternet">No internet connection.</string>
+    <string name="errorMsg">Service unavailable. Please try again later.</string>
+</resources>
