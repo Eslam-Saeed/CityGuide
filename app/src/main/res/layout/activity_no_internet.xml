@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".common.NoInternetActivity">
+
+    <ImageView
+        android:id="@+id/imgNoInternet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/no_internet_logo" />
+
+
+    <TextView
+        android:id="@+id/txtNoInternet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgNoInternet"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/noInternet"
+        android:textColor="@color/fontColor"
+        android:textSize="@dimen/font_xxlarge"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtNoInternet2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtNoInternet"
+        android:layout_centerHorizontal="true"
+        android:text="@string/open_internet_and_try_again"
+        android:textColor="@color/fontColor"
+        android:textSize="@dimen/font_large" />
+</RelativeLayout>

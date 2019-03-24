@@ -30,6 +30,7 @@ public class Constants {
 
     public class FragmentTags {
 
+        public static final String LOGIN = "login";
     }
 
     public class User {

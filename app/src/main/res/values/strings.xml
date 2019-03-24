@@ -10,4 +10,12 @@
     <string name="somethingWrong">Sorry, Something went wrong</string>
     <string name="noInternet">No internet connection.</string>
     <string name="errorMsg">Service unavailable. Please try again later.</string>
+    <string name="phone_mail">Phone or Mail</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="or">Or</string>
+    <string name="register">Register</string>
+    <string name="phone_cant_empty">Phone can\'t be empty</string>
+    <string name="password_cant_empty">Password can\'t be empty</string>
+    <string name="open_internet_and_try_again">Open internet and try again!</string>
 </resources>

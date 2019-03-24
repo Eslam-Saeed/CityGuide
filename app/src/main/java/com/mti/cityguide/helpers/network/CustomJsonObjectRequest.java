@@ -8,6 +8,8 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.mti.cityguide.common.NoInternetActivity;
+import com.mti.cityguide.helpers.ConnectionDetector;
 import com.mti.cityguide.helpers.Constants;
 
 import org.json.JSONObject;
@@ -29,8 +31,12 @@ public class CustomJsonObjectRequest extends com.android.volley.toolbox.JsonObje
 
     CustomJsonObjectRequest(boolean addAuthorization, Context context, int method, String url, JSONObject jsonRequest, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
         super(method, url, jsonRequest, listener, errorListener);
-        this.addAuthorization = addAuthorization;
-        init(context);
+        if (ConnectionDetector.isConnected(context)) {
+            this.addAuthorization = addAuthorization;
+            init(context);
+        } else {
+            NoInternetActivity.startActivity(context);
+        }
     }
 
 

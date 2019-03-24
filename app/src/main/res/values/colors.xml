@@ -21,6 +21,8 @@
     <color name="colorBlackTransparent">#8C000000</color>
     <color name="orange">#F39C12</color>
     <color name="backgroundColor">#F3F3F3</color>
+    <color name="separatorLight">#E2E2E2</color>
+
 
     <color name="grey_hint">#8E8E93</color>
     <color name="colorAccentBGOpacity50">#8036DEAB</color>

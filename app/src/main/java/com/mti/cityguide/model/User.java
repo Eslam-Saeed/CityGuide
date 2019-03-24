@@ -1,7 +1,6 @@
 package com.mti.cityguide.model;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -25,13 +24,12 @@ public class User {
     @Expose
     private String password;
 
-
-    public static void initUser(Context context, User user, String password) {
+    public static void initUser(Context context, User user) {
         AppPreferences.setInt(context, Constants.User.ID, user.getId());
         AppPreferences.setString(context, Constants.User.EMAIL, user.getEmail());
         AppPreferences.setString(context, Constants.User.PHONE, user.getPhone());
         AppPreferences.setString(context, Constants.User.NAME, user.getName());
-        AppPreferences.setString(context, Constants.User.PASSWORD, password);
+        AppPreferences.setString(context, Constants.User.PASSWORD, user.getPassword());
     }
 
     public static User getLoggedInUser(Context context) {
@@ -54,7 +52,7 @@ public class User {
     }
 
     public static boolean isLoggedInUser(Context context) {
-        return !TextUtils.isEmpty(AppPreferences.getString(context, Constants.User.PHONE, ""));
+        return AppPreferences.getInt(context, Constants.User.ID, -1) != -1;
     }
 
     public int getId() {

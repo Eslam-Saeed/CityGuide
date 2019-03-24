@@ -23,7 +23,8 @@ public class ServicesHelper {
     private static ServicesHelper mInstance;
     private RequestQueue mRequestQueue;
 
-    private final String BASE_URL = ""; //Staging Server
+    private final String BASE_URL = "192.168.1.2/cityguide/index.php/api/"; //Staging Server
+    private final String FAIL_CODE = "failed_fail";
     private final String LOGIN_URL = BASE_URL + "user/login";
     private final String COUNTRIES_URL = BASE_URL + "countries/";
     private final String CITIES_URL = BASE_URL + "countries/";
@@ -59,7 +60,7 @@ public class ServicesHelper {
         try {
             String loginJson = GsonWrapper.getInstance().getGson().toJson(loginRequest, LoginRequest.class);
             CustomJsonObjectRequest customJsonObjectRequest = new CustomJsonObjectRequest(false, context, Request.Method.POST, LOGIN_URL, new JSONObject(loginJson), response -> {
-                if (response != null) {
+                if (response != null && !response.toString().contains(FAIL_CODE)) {
                     LoginResponse loginResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), LoginResponse.class);
                     loginSuccessListener.onResponse(loginResponse);
                 } else
@@ -78,7 +79,7 @@ public class ServicesHelper {
     public void getCountries(Context context, final Response.Listener<CountryResponse> getCountiresSuccessListener, final Response.ErrorListener getCountriesErrorListener) {
         try {
             CustomJsonObjectRequest customJsonObjectRequest = new CustomJsonObjectRequest(false, context, Request.Method.GET, COUNTRIES_URL, null, response -> {
-                if (response != null) {
+                if (response != null && !response.toString().contains(FAIL_CODE)) {
                     CountryResponse countryResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), CountryResponse.class);
                     getCountiresSuccessListener.onResponse(countryResponse);
                 } else
@@ -95,7 +96,7 @@ public class ServicesHelper {
     public void getCities(Context context, int countryId, final Response.Listener<CitiesResponse> getCitiesSuccessListener, final Response.ErrorListener getCitiesErrorListener) {
         try {
             CustomJsonObjectRequest customJsonObjectRequest = new CustomJsonObjectRequest(false, context, Request.Method.GET, "", null, response -> {
-                if (response != null) {
+                if (response != null && !response.toString().contains(FAIL_CODE)) {
                     CitiesResponse citiesResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), CitiesResponse.class);
                     getCitiesSuccessListener.onResponse(citiesResponse);
                 } else
@@ -112,7 +113,7 @@ public class ServicesHelper {
     public void getAreas(Context context, int cityId, final Response.Listener<AreasResponse> getAreasResponseListener, final Response.ErrorListener getAreasErrorListener) {
         try {
             CustomJsonObjectRequest customJsonObjectRequest = new CustomJsonObjectRequest(false, context, Request.Method.GET, "", null, response -> {
-                if (response != null) {
+                if (response != null && !response.toString().contains(FAIL_CODE)) {
                     AreasResponse areasResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), AreasResponse.class);
                     getAreasResponseListener.onResponse(areasResponse);
                 } else
@@ -131,7 +132,7 @@ public class ServicesHelper {
         try {
             String registerJson = GsonWrapper.getInstance().getGson().toJson(registerRequest, RegisterRequest.class);
             CustomJsonObjectRequest customJsonObjectRequest = new CustomJsonObjectRequest(false, context, Request.Method.POST, REGISTER_URL, new JSONObject(registerJson), response -> {
-                if (response != null) {
+                if (response != null && !response.toString().contains(FAIL_CODE)) {
                     RegisterResponse registerResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), RegisterResponse.class);
                     registerSuccessListener.onResponse(registerResponse);
                 } else
