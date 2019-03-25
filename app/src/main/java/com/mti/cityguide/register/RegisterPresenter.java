@@ -7,25 +7,46 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.mti.cityguide.R;
 import com.mti.cityguide.base.BasePresenter;
+import com.mti.cityguide.helpers.DTO.CountryResponse;
 import com.mti.cityguide.helpers.DTO.LoginResponse;
 import com.mti.cityguide.helpers.network.ServicesHelper;
 import com.mti.cityguide.helpers.network.VolleyErrorHandler;
+import com.mti.cityguide.model.Country;
 import com.mti.cityguide.model.User;
+
+import java.util.ArrayList;
 
 public class RegisterPresenter extends BasePresenter {
     private Context context;
     private RegisterView view;
     private User user;
+    private ArrayList<Country> listCountries;
+    private int selectedPosition = -1;
 
 
-    public RegisterPresenter(Context context, RegisterView view) {
+    RegisterPresenter(Context context, RegisterView view) {
         this.context = context;
         this.view = view;
         this.user = new User();
+        this.listCountries = new ArrayList<>();
+        getListCountries();
     }
 
+    private void getListCountries() {
+        ServicesHelper.getInstance(context).getCountries(context, getCountriesSuccessListener, error -> {
+        });
+    }
 
-    public User getUser() {
+    private Response.Listener<CountryResponse> getCountriesSuccessListener = new Response.Listener<CountryResponse>() {
+        @Override
+        public void onResponse(CountryResponse response) {
+            if (response.getListCountries() != null && !response.getListCountries().isEmpty()) {
+                listCountries.addAll(response.getListCountries());
+            }
+        }
+    };
+
+    User getUser() {
         return user;
     }
 
@@ -45,6 +66,13 @@ public class RegisterPresenter extends BasePresenter {
         if (!confPassword.equals(user.getPassword())) {
             view.showEmailPhoneWarning(context.getString(R.string.conf_pass_must_equal_pass));
             return false;
+        }
+
+        if (selectedPosition == -1) {
+            view.showCountryError(true);
+        } else {
+            view.showCountryError(false);
+            user.setCountry(listCountries.get(selectedPosition).getId());
         }
         return true;
     }
@@ -80,4 +108,16 @@ public class RegisterPresenter extends BasePresenter {
                 view.showErrorMessage(VolleyErrorHandler.getErrorMessage(context, error));
         }
     };
+
+    ArrayList<String> getListCountry() {
+        ArrayList<String> countries = new ArrayList<>();
+        for (int i = 0; i < listCountries.size(); i++) {
+            countries.add(listCountries.get(i).getName());
+        }
+        return countries;
+    }
+
+    void setSelectedPosition(int selectedPosition) {
+        this.selectedPosition = selectedPosition;
+    }
 }

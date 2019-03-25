@@ -16,6 +16,7 @@ public class Constants {
 
     public class BundleKeys {
 
+        public static final String TYPE = "type";
     }
 
     public class Localization {
@@ -40,6 +41,7 @@ public class Constants {
         public static final String PASSWORD = "password";
         public static final String NAME = "full_name";
         public static final String PHONE = "phone";
+        public static final String COUNTRY = "coutry";
     }
 
     public class RequestCodes {

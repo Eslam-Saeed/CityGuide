@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,14 +16,17 @@ import com.mti.cityguide.R;
 import com.mti.cityguide.base.BaseFragment;
 import com.mti.cityguide.home.HomeActivity;
 
+import java.util.ArrayList;
+
 public class RegisterFragment extends BaseFragment implements RegisterView {
     private Context context;
     private RegisterPresenter presenter;
 
     private TextInputLayout tilName, tilEmail, tilPhoneNumber, tilPassword, tilConfPassword;
     private EditText edtName, edtEmail, edtPhoneNumber, edtPassword, edtConfPassword;
-    private TextView btnRegister;
+    private TextView btnRegister, txtCountryValue, txtErrorCountry;
     private ProgressBar progressRegister;
+    private RelativeLayout rlCountry;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -50,17 +54,36 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
         tilConfPassword = v.findViewById(R.id.tilConfPassword);
         edtConfPassword = v.findViewById(R.id.edtConfPassword);
         btnRegister = v.findViewById(R.id.btnRegister);
+        txtCountryValue = v.findViewById(R.id.txtCountryValue);
+        txtErrorCountry = v.findViewById(R.id.txtErrorCountry);
+        rlCountry = v.findViewById(R.id.rlCountry);
     }
 
     @Override
     protected void setListeners() {
         super.setListeners();
-        btnRegister.setOnClickListener(v -> {
-            updateData();
-            if (presenter.validateUser(edtConfPassword.getText().toString())) {
-                presenter.register();
-            }
-        });
+        btnRegister.setOnClickListener(v -> onBtnRegisterClicked());
+        rlCountry.setOnClickListener(v -> onCountryClicked(presenter.getListCountry()));
+    }
+
+    private void onCountryClicked(ArrayList<String> listCountry) {
+        if (listCountry.isEmpty())
+            showErrorMessage(context.getString(R.string.no_data_available));
+        else
+            new AlertDialog.Builder(context)
+                    .setItems(listCountry.toArray(new String[0]), (dialog, selectedItemPositions) -> {
+                        dialog.dismiss();
+                        presenter.setSelectedPosition(selectedItemPositions);
+                        txtCountryValue.setText(listCountry.get(selectedItemPositions));
+                    })
+                    .show();
+    }
+
+    private void onBtnRegisterClicked() {
+        updateData();
+        if (presenter.validateUser(edtConfPassword.getText().toString())) {
+            presenter.register();
+        }
     }
 
     @Override
@@ -113,5 +136,10 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
     @Override
     public void showErrorMessage(String errorMessage) {
         Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showCountryError(boolean show) {
+        txtErrorCountry.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
     }
 }

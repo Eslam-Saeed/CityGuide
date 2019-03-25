@@ -26,7 +26,7 @@ public class ServicesHelper {
     private final String FAIL_CODE = "failed_fail";
     private final String LOGIN_URL = BASE_URL + "user/login";
     private final String REGISTER_URL = BASE_URL + "user/adduser";
-    private final String COUNTRIES_URL = BASE_URL + "countries/";
+    private final String COUNTRIES_URL = BASE_URL + "country/getallcountries";
     private final String CITIES_URL = BASE_URL + "countries/";
     private final String AREAS_URL = BASE_URL + "countries/";
 

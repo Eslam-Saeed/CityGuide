@@ -140,6 +140,56 @@
             </android.support.design.widget.TextInputLayout>
 
 
+            <RelativeLayout
+                android:id="@+id/rlCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_xlarge"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/padding_medium"
+                android:paddingEnd="@dimen/padding_small">
+
+                <TextView
+                    android:id="@+id/txtCountryTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginEnd="@dimen/padding_medium"
+                    android:text="@string/country"
+                    android:textColor="@color/grey_hint"
+                    android:textSize="@dimen/font_large" />
+
+                <TextView
+                    android:id="@+id/txtCountryValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@id/txtCountryTitle"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:lines="1"
+                    android:text="@string/select"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtErrorCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtCountryTitle"
+                    android:text="@string/must_choose_country"
+                    android:textColor="@color/colorError"
+                    android:textSize="@dimen/font_lsmall"
+                    android:visibility="invisible" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1dp"
+                    android:layout_below="@id/txtCountryTitle"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:background="@color/grey_hint" />
+            </RelativeLayout>
+
             <TextView
                 android:id="@+id/btnRegister"
                 android:layout_width="match_parent"

@@ -14,4 +14,6 @@ public interface RegisterView extends BaseView {
     void showErrorMessage(String errorMessage);
 
     void onUserRegisteredSuccess();
+
+    void showCountryError(boolean show);
 }
