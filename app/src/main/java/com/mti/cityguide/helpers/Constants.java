@@ -20,7 +20,7 @@ public class Constants {
 
     public class Localization {
         public static final String CONTENT_TYPE = "Content-Type";
-        public static final String CONTENT_TYPE_VALUE = "application/json";
+        public static final String CONTENT_TYPE_VALUE = "application/json; charset=utf-8";
     }
 
     public class Types {
@@ -31,6 +31,7 @@ public class Constants {
     public class FragmentTags {
 
         public static final String LOGIN = "login";
+        public static final String REGISTER = "register";
     }
 
     public class User {

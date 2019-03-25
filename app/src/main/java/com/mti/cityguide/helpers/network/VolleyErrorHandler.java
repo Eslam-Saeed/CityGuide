@@ -58,7 +58,7 @@ public class VolleyErrorHandler {
      * @param error
      * @return
      */
-    private static boolean isServerProblem(Object error) {
+    public static boolean isServerProblem(Object error) {
         return (error instanceof ServerError) || (error instanceof AuthFailureError);
     }
 

@@ -35,4 +35,22 @@
         android:text="@string/open_internet_and_try_again"
         android:textColor="@color/fontColor"
         android:textSize="@dimen/font_large" />
+
+
+    <TextView
+        android:id="@+id/btnGoBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtNoInternet2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_large"
+        android:background="@drawable/bg_curved_accent_filled"
+        android:gravity="center"
+        android:paddingStart="@dimen/margin_large"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingEnd="@dimen/margin_large"
+        android:paddingBottom="@dimen/margin_small"
+        android:text="@string/go_back"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_lsmall" />
 </RelativeLayout>

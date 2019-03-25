@@ -18,4 +18,15 @@
     <string name="phone_cant_empty">Phone can\'t be empty</string>
     <string name="password_cant_empty">Password can\'t be empty</string>
     <string name="open_internet_and_try_again">Open internet and try again!</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="cancel">Cancel</string>
+    <string name="mail_phone_warning">You need to set a phone or mail.</string>
+    <string name="conf_pass_must_equal_pass">Confirm password must match password</string>
+    <string name="registered_successfully">Registered successfully</string>
+    <string name="ok">Ok</string>
+    <string name="phone_or_mail_exists">Phone or email exists</string>
+    <string name="go_back">Go back</string>
 </resources>
