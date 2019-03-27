@@ -80,7 +80,7 @@ public class RegisterPresenter extends BasePresenter {
     public void register() {
         view.showProgress(true);
         view.enableViews(false);
-        ServicesHelper.getInstance(context).register(context, user, registerSuccessListener, getErrorSuccessListener);
+        ServicesHelper.getInstance(context).register(context, user, registerSuccessListener, getErrorListener);
     }
 
     private Response.Listener<LoginResponse> registerSuccessListener = new Response.Listener<LoginResponse>() {
@@ -97,7 +97,7 @@ public class RegisterPresenter extends BasePresenter {
         }
     };
 
-    private Response.ErrorListener getErrorSuccessListener = new Response.ErrorListener() {
+    private Response.ErrorListener getErrorListener = new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
             view.showProgress(false);

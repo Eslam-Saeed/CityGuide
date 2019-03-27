@@ -9,13 +9,12 @@ public class Constants {
 
     public class GeneralKeys {
         public static final int TIME_OUT_VALUE = 30000;
-
         public static final int DEFAULT_PAGE_NUMBER = 1;
         public static final int DEFAULT_PAGE_SIZE = 5;
+        public static final int ALL = 99999999;
     }
 
     public class BundleKeys {
-
         public static final String TYPE = "type";
     }
 
@@ -27,10 +26,11 @@ public class Constants {
     public class Types {
         public static final String MALE = "male";
         public static final String FEMALE = "female";
+        public static final int HOTELS = 0;
+        public static final int RESTAURANT = 1;
     }
 
     public class FragmentTags {
-
         public static final String LOGIN = "login";
         public static final String REGISTER = "register";
     }

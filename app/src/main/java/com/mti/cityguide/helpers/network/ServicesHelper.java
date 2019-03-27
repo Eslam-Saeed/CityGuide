@@ -7,8 +7,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
-import com.mti.cityguide.helpers.DTO.AreasResponse;
-import com.mti.cityguide.helpers.DTO.CitiesResponse;
+import com.mti.cityguide.helpers.DTO.AreaResponse;
+import com.mti.cityguide.helpers.DTO.CityResponse;
 import com.mti.cityguide.helpers.DTO.CountryResponse;
 import com.mti.cityguide.helpers.DTO.LoginRequest;
 import com.mti.cityguide.helpers.DTO.LoginResponse;
@@ -27,8 +27,8 @@ public class ServicesHelper {
     private final String LOGIN_URL = BASE_URL + "user/login";
     private final String REGISTER_URL = BASE_URL + "user/adduser";
     private final String COUNTRIES_URL = BASE_URL + "country/getallcountries";
-    private final String CITIES_URL = BASE_URL + "countries/";
-    private final String AREAS_URL = BASE_URL + "countries/";
+    private final String CITIES_URL = BASE_URL + "city/getcitiesbycountry?country_id=";
+    private final String AREAS_URL = BASE_URL + "area/getareasbycity?city_id=";
 
     public enum Tag {
         LOGIN,
@@ -88,12 +88,12 @@ public class ServicesHelper {
         }
     }
 
-    public void getCities(Context context, int countryId, final Response.Listener<CitiesResponse> getCitiesSuccessListener, final Response.ErrorListener getCitiesErrorListener) {
+    public void getCities(Context context, int countryId, final Response.Listener<CityResponse> getCitiesSuccessListener, final Response.ErrorListener getCitiesErrorListener) {
         try {
-            new CustomJsonObjectRequest(context, Request.Method.GET, "", null, response -> {
+            new CustomJsonObjectRequest(context, Request.Method.GET, CITIES_URL+countryId, null, response -> {
                 if (response != null && !response.toString().contains(FAIL_CODE)) {
-                    CitiesResponse citiesResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), CitiesResponse.class);
-                    getCitiesSuccessListener.onResponse(citiesResponse);
+                    CityResponse cityResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), CityResponse.class);
+                    getCitiesSuccessListener.onResponse(cityResponse);
                 } else
                     getCitiesErrorListener.onErrorResponse(new VolleyError());
             }, getCitiesErrorListener, Tag.CITIES);
@@ -103,12 +103,12 @@ public class ServicesHelper {
         }
     }
 
-    public void getAreas(Context context, int cityId, final Response.Listener<AreasResponse> getAreasResponseListener, final Response.ErrorListener getAreasErrorListener) {
+    public void getAreas(Context context, int cityId, final Response.Listener<AreaResponse> getAreasResponseListener, final Response.ErrorListener getAreasErrorListener) {
         try {
-            new CustomJsonObjectRequest(context, Request.Method.GET, "", null, response -> {
+            new CustomJsonObjectRequest(context, Request.Method.GET, AREAS_URL+cityId, null, response -> {
                 if (response != null && !response.toString().contains(FAIL_CODE)) {
-                    AreasResponse areasResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), AreasResponse.class);
-                    getAreasResponseListener.onResponse(areasResponse);
+                    AreaResponse areaResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), AreaResponse.class);
+                    getAreasResponseListener.onResponse(areaResponse);
                 } else
                     getAreasErrorListener.onErrorResponse(new VolleyError());
             }, getAreasErrorListener, Tag.AREAS);

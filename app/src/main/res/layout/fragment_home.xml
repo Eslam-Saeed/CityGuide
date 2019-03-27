@@ -1,7 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rlHomeBackground"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlHomeBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/txtTitle"
+            style="@style/FontSemiBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/font_xlarge"
+            android:layout_marginTop="@dimen/margin_xxxlarge"
+            android:text="@string/hotels"
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/font_xxxlarge" />
+
+        <TextView
+            android:id="@+id/txtDesc"
+            style="@style/FontSemiLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtTitle"
+            android:layout_marginStart="@dimen/font_xlarge"
+            android:text="@string/hotels_desc"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_large" />
+
+        <TextView
+            android:id="@+id/txtCityTitle"
+            style="@style/FontSemiLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btnCity"
+            android:layout_marginStart="@dimen/margin_xxlarge"
+            android:text="@string/city"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_medium" />
+
+        <TextView
+            android:id="@+id/btnCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/margin_xxlarge"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_xxlarge"
+            android:background="@drawable/bg_curved_white_filled"
+            android:drawableEnd="@drawable/ic_address"
+            android:gravity="center"
+            android:lines="1"
+            android:maxLines="1"
+            android:paddingStart="@dimen/margin_xlarge"
+            android:paddingTop="@dimen/margin_vsmall"
+            android:paddingEnd="@dimen/margin_xlarge"
+            android:paddingBottom="@dimen/padding_medium"
+            android:singleLine="true"
+            android:text="@string/all"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_lsmall" />
+
+        <TextView
+            android:id="@+id/txtAreaTitle"
+            style="@style/FontSemiLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnCity"
+            android:layout_marginStart="@dimen/margin_xxlarge"
+            android:layout_marginTop="@dimen/padding_xlarge"
+            android:text="@string/area"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_medium" />
+
+        <TextView
+            android:id="@+id/btnArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtAreaTitle"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/margin_xxlarge"
+            android:layout_marginTop="@dimen/margin_vsmall"
+            android:layout_marginEnd="@dimen/margin_xxlarge"
+            android:background="@drawable/bg_curved_white_filled"
+            android:gravity="center"
+            android:lines="1"
+            android:maxLines="1"
+            android:paddingStart="@dimen/margin_xlarge"
+            android:paddingTop="@dimen/padding_medium"
+            android:paddingEnd="@dimen/margin_xlarge"
+            android:paddingBottom="@dimen/padding_medium"
+            android:singleLine="true"
+            android:text="@string/all"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_lsmall" />
+
+
+        <TextView
+            android:id="@+id/btnFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnArea"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:background="@drawable/bg_curved_accent_filled"
+            android:gravity="center"
+            android:lines="1"
+            android:maxLines="1"
+            android:paddingStart="@dimen/margin_xxlarge"
+            android:paddingTop="@dimen/margin_small"
+            android:paddingEnd="@dimen/margin_xxlarge"
+            android:paddingBottom="@dimen/margin_small"
+            android:text="@string/filter"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_lsmall" />
+
+
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>
