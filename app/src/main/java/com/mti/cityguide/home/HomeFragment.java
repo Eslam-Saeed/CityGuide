@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.mti.cityguide.R;
 import com.mti.cityguide.base.BaseFragment;
 import com.mti.cityguide.helpers.Constants;
+import com.mti.cityguide.hotels.HotelsActivity;
 
 import java.util.ArrayList;
 
@@ -133,7 +134,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
 
     @Override
     public void navigateToHotelsScreen(int cityId, int areaId) {
-
+        HotelsActivity.startActivity(context, cityId, areaId);
     }
 
     @Override

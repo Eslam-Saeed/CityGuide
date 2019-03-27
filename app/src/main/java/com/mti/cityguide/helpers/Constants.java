@@ -11,11 +11,13 @@ public class Constants {
         public static final int TIME_OUT_VALUE = 30000;
         public static final int DEFAULT_PAGE_NUMBER = 1;
         public static final int DEFAULT_PAGE_SIZE = 5;
-        public static final int ALL = 99999999;
+        public static final int ALL = 0;
     }
 
     public class BundleKeys {
         public static final String TYPE = "type";
+        public static final String CITY_ID = "city_id";
+        public static final String AREA_ID = "area_id";
     }
 
     public class Localization {
@@ -33,6 +35,8 @@ public class Constants {
     public class FragmentTags {
         public static final String LOGIN = "login";
         public static final String REGISTER = "register";
+        public static final String HOTELS = "hotels";
+        public static final String RESTAURANTS= "restaurants";
     }
 
     public class User {

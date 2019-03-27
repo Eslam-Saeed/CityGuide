@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_xSmall"
+        android:layout_marginTop="@dimen/padding_xSmall"
+        android:layout_marginEnd="@dimen/padding_xSmall"
+        android:layout_marginBottom="@dimen/margin_mediums"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/margin_vsmall"
+        app:cardElevation="@dimen/padding_xSmall">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/margin_medium">
+
+            <RelativeLayout
+                android:id="@+id/rlHotelImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/imgHotel"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    app:riv_corner_radius_top_left="@dimen/margin_vsmall"
+                    app:riv_corner_radius_top_right="@dimen/margin_vsmall" />
+
+                <TextView
+                    android:id="@+id/txtHotelTitle"
+                    style="@style/FontSemiBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/imgHotel"
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/padding_medium"
+                    android:layout_marginBottom="@dimen/padding_medium"
+                    android:elevation="2dp"
+                    android:lines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_large"
+                    tools:text="La Plaza" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignBottom="@+id/imgHotel"
+                    android:background="@drawable/scrim_gradient"
+                    android:elevation="@dimen/dimen_1dp" />
+            </RelativeLayout>
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/rating_stars_height"
+                android:layout_below="@id/rlHotelImage"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/padding_xSmall"
+                android:numStars="5"
+                android:progressDrawable="@drawable/branch_rating"
+                android:stepSize="1" />
+
+            <ImageView
+                android:id="@+id/imgLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlHotelImage"
+                android:layout_alignParentEnd="true"
+                android:padding="@dimen/margin_medium"
+                android:paddingBottom="@dimen/padding_xSmall"
+                android:src="@drawable/map_icon" />
+
+            <TextView
+                android:id="@+id/txtHotelDescription"
+                style="@style/FontSemiLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ratingBar"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_medium"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textAlignment="viewStart"
+                android:textColor="@color/fontColor"
+                android:textSize="@dimen/font_medium"
+                tools:text="Hotel description" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
