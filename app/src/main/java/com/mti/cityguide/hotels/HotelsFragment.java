@@ -25,9 +25,10 @@ public class HotelsFragment extends BaseFragment implements HotelsView, HotelsAd
     private HotelsAdapter adapter;
 
 
-    public static HotelsFragment newInstance(int cityId, int areaId) {
+    public static HotelsFragment newInstance(int countryId, int cityId, int areaId) {
         Bundle args = new Bundle();
         HotelsFragment fragment = new HotelsFragment();
+        args.putInt(Constants.BundleKeys.COUNTRY_ID, countryId);
         args.putInt(Constants.BundleKeys.CITY_ID, cityId);
         args.putInt(Constants.BundleKeys.AREA_ID, areaId);
         fragment.setArguments(args);
@@ -39,6 +40,7 @@ public class HotelsFragment extends BaseFragment implements HotelsView, HotelsAd
         super.onActivityCreated(savedInstanceState);
         context = getContext();
         presenter = new HotelsPresenter(context, this,
+                getArguments() == null ? Constants.GeneralKeys.ALL : getArguments().getInt(Constants.BundleKeys.COUNTRY_ID),
                 getArguments() == null ? Constants.GeneralKeys.ALL : getArguments().getInt(Constants.BundleKeys.CITY_ID)
                 , getArguments() == null ? Constants.GeneralKeys.ALL : getArguments().getInt(Constants.BundleKeys.AREA_ID));
         adapter = new HotelsAdapter(context, presenter.getListHotels(), this);

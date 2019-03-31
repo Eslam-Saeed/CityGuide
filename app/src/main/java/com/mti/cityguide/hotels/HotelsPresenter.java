@@ -3,33 +3,32 @@ package com.mti.cityguide.hotels;
 import android.content.Context;
 
 import com.android.volley.Response;
-import com.mti.cityguide.R;
 import com.mti.cityguide.base.BasePresenter;
 import com.mti.cityguide.helpers.DTO.HotelResponse;
 import com.mti.cityguide.helpers.network.ServicesHelper;
 import com.mti.cityguide.helpers.network.VolleyErrorHandler;
 import com.mti.cityguide.model.Hotel;
-import com.mti.cityguide.model.User;
 
 import java.util.ArrayList;
 
-public class HotelsPresenter extends BasePresenter {
+class HotelsPresenter extends BasePresenter {
     private Context context;
     private HotelsView view;
-    private int cityId, areaId;
+    private int cityId, areaId, countryId;
     private ArrayList<Hotel> listHotels;
 
-    public HotelsPresenter(Context context, HotelsView view, int cityId, int areaId) {
+    HotelsPresenter(Context context, HotelsView view, int countryId, int cityId, int areaId) {
         this.context = context;
         this.view = view;
+        this.countryId = countryId;
         this.cityId = cityId;
         this.areaId = areaId;
         this.listHotels = new ArrayList<>();
     }
 
-    public void loadData() {
+    void loadData() {
         view.showProgress(true);
-        ServicesHelper.getInstance(context).getHotels(context, User.getLoggedInUser(context).getCountry(), cityId, areaId,
+        ServicesHelper.getInstance(context).getHotels(context, countryId, cityId, areaId,
                 getHotelsSuccessListener, getErrorSuccessListener);
     }
 
@@ -48,7 +47,7 @@ public class HotelsPresenter extends BasePresenter {
         view.showErrorMessage(VolleyErrorHandler.getErrorMessage(context, error));
     };
 
-    public ArrayList<Hotel> getListHotels() {
+    ArrayList<Hotel> getListHotels() {
         return listHotels;
     }
 }

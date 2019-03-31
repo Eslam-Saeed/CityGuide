@@ -11,8 +11,9 @@ import com.mti.cityguide.helpers.Constants;
 
 public class HotelsActivity extends BaseActivity {
 
-    public static void startActivity(Context context, int cityId, int areaId) {
+    public static void startActivity(Context context, int countryId, int cityId, int areaId) {
         Intent starter = new Intent(context, HotelsActivity.class);
+        starter.putExtra(Constants.BundleKeys.COUNTRY_ID, countryId);
         starter.putExtra(Constants.BundleKeys.CITY_ID, cityId);
         starter.putExtra(Constants.BundleKeys.AREA_ID, areaId);
         context.startActivity(starter);
@@ -29,7 +30,8 @@ public class HotelsActivity extends BaseActivity {
 
     private void loadFragment() {
         HotelsFragment fragment = (HotelsFragment) getSupportFragmentManager().findFragmentByTag(Constants.FragmentTags.HOTELS);
-        replaceFragment(fragment == null ? HotelsFragment.newInstance(getIntent().getIntExtra(Constants.BundleKeys.CITY_ID, Constants.GeneralKeys.ALL),
+        replaceFragment(fragment == null ? HotelsFragment.newInstance(getIntent().getIntExtra(Constants.BundleKeys.COUNTRY_ID, Constants.GeneralKeys.ALL)
+                , getIntent().getIntExtra(Constants.BundleKeys.CITY_ID, Constants.GeneralKeys.ALL),
                 getIntent().getIntExtra(Constants.BundleKeys.AREA_ID, Constants.GeneralKeys.ALL)) :
                 fragment, R.id.frameContainer, Constants.FragmentTags.HOTELS, false);
     }

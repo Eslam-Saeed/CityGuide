@@ -35,12 +35,46 @@
             android:textSize="@dimen/font_large" />
 
         <TextView
+            android:id="@+id/txtCountryTitle"
+            style="@style/FontSemiLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btnCountry"
+            android:layout_marginStart="@dimen/margin_xxlarge"
+            android:text="@string/country"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_medium" />
+
+        <TextView
+            android:id="@+id/btnCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/margin_xxlarge"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_xxlarge"
+            android:background="@drawable/bg_curved_white_filled"
+            android:drawableEnd="@drawable/ic_address"
+            android:gravity="center"
+            android:lines="1"
+            android:maxLines="1"
+            android:paddingStart="@dimen/margin_xlarge"
+            android:paddingTop="@dimen/margin_vsmall"
+            android:paddingEnd="@dimen/margin_xlarge"
+            android:paddingBottom="@dimen/padding_medium"
+            android:singleLine="true"
+            android:text="@string/all"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/font_lsmall" />
+
+        <TextView
             android:id="@+id/txtCityTitle"
             style="@style/FontSemiLight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/btnCity"
+            android:layout_below="@id/btnCountry"
             android:layout_marginStart="@dimen/margin_xxlarge"
+            android:layout_marginTop="@dimen/padding_large"
             android:text="@string/city"
             android:textColor="@color/white"
             android:textSize="@dimen/font_medium" />
@@ -49,7 +83,7 @@
             android:id="@+id/btnCity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_below="@+id/txtCityTitle"
             android:layout_marginStart="@dimen/margin_xxlarge"
             android:layout_marginTop="@dimen/margin_small"
             android:layout_marginEnd="@dimen/margin_xxlarge"
@@ -74,7 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnCity"
             android:layout_marginStart="@dimen/margin_xxlarge"
-            android:layout_marginTop="@dimen/padding_xlarge"
+            android:layout_marginTop="@dimen/padding_large"
             android:text="@string/area"
             android:textColor="@color/white"
             android:textSize="@dimen/font_medium" />
