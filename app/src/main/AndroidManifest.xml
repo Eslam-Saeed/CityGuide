@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".restaurants.RestaurantsActivity"></activity>
         <activity
             android:name=".hotels.HotelsActivity"
             android:parentActivityName=".home.HomeActivity"
@@ -31,7 +32,7 @@
             android:name=".register.RegisterActivity"
             android:parentActivityName=".login.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait"
