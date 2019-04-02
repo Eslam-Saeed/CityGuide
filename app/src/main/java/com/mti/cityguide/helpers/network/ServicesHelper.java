@@ -13,6 +13,7 @@ import com.mti.cityguide.helpers.DTO.CountryResponse;
 import com.mti.cityguide.helpers.DTO.HotelResponse;
 import com.mti.cityguide.helpers.DTO.LoginRequest;
 import com.mti.cityguide.helpers.DTO.LoginResponse;
+import com.mti.cityguide.helpers.DTO.RestaurantResponse;
 import com.mti.cityguide.model.User;
 
 import org.json.JSONObject;
@@ -32,6 +33,7 @@ public class ServicesHelper {
     private final String CITIES_URL = BASE_URL + "city/getcitiesbycountry?country_id=";
     private final String AREAS_URL = BASE_URL + "area/getareasbycity?city_id=";
     private final String GET_HOTELS = BASE_URL + "hotel/gethotels?country_id=";
+    private final String GET_RESTAURANTS = BASE_URL + "hotel/gethotels?country_id=";
 
     public enum Tag {
         LOGIN,
@@ -156,5 +158,25 @@ public class ServicesHelper {
 
     private String getHotelsUrl(int countryId, int cityId, int areaId) {
         return GET_HOTELS + countryId + "&city_id=" + cityId + "&area_id=" + areaId;
+    }
+
+    //=============================== Restaurants ====================================
+    public void getRestaurants(Context context, int countryId, int cityId, int areaId, final Response.Listener<RestaurantResponse> getRestaurantsSuccessListener, final Response.ErrorListener getRestaurantsErrorListener) {
+        try {
+            new CustomJsonObjectRequest(context, Request.Method.GET, getRestaurantsUrl(countryId, cityId, areaId), null, response -> {
+                if (response != null && !response.toString().contains(FAIL_CODE)) {
+                    RestaurantResponse restaurantResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), RestaurantResponse.class);
+                    getRestaurantsSuccessListener.onResponse(restaurantResponse);
+                } else
+                    getRestaurantsErrorListener.onErrorResponse(new VolleyError());
+            }, getRestaurantsErrorListener, Tag.CITIES);
+        } catch (Exception e) {
+            e.printStackTrace();
+            getRestaurantsErrorListener.onErrorResponse(new VolleyError());
+        }
+    }
+
+    private String getRestaurantsUrl(int countryId, int cityId, int areaId) {
+        return GET_RESTAURANTS + countryId + "&city_id=" + cityId + "&area_id=" + areaId;
     }
 }

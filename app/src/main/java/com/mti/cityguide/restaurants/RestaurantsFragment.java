@@ -3,10 +3,12 @@ package com.mti.cityguide.restaurants;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mti.cityguide.R;
 import com.mti.cityguide.base.BaseFragment;
@@ -34,6 +36,7 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsView
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        context = getContext();
         presenter = new RestaurantsPresenter(context, this,
                 getArguments() == null ? Constants.GeneralKeys.ALL : getArguments().getInt(Constants.BundleKeys.COUNTRY_ID),
                 getArguments() == null ? Constants.GeneralKeys.ALL : getArguments().getInt(Constants.BundleKeys.CITY_ID)
@@ -41,6 +44,15 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsView
         adapter = new RestaurantsAdapter(context, presenter.getListRestaurants(), this);
         recyclerView.setAdapter(adapter);
         presenter.loadData();
+    }
+
+    @Override
+    protected void initializeViews(View v) {
+        super.initializeViews(v);
+        recyclerView = v.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
+        progressBar = v.findViewById(R.id.progressBar);
+        txtError = v.findViewById(R.id.txtError);
     }
 
     @Override
@@ -55,6 +67,25 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsView
 
     @Override
     public void onRestaurantClicked(Restaurant restaurant) {
+        Toast.makeText(context, restaurant.toString() + " was clicked", Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void onRestaurantsLoadedSuccessfully() {
+        adapter.notifyDataSetChanged();
+        recyclerView.setVisibility(View.VISIBLE);
+        txtError.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showEmptyView() {
+        recyclerView.setVisibility(View.GONE);
+        txtError.setVisibility(View.VISIBLE);
+        txtError.setText(getString(R.string.no_hotels_found));
+    }
+
+    @Override
+    public void showErrorMessage(String errorMessage) {
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show();
     }
 }
