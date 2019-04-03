@@ -33,7 +33,7 @@ public class ServicesHelper {
     private final String CITIES_URL = BASE_URL + "city/getcitiesbycountry?country_id=";
     private final String AREAS_URL = BASE_URL + "area/getareasbycity?city_id=";
     private final String GET_HOTELS = BASE_URL + "hotel/gethotels?country_id=";
-    private final String GET_RESTAURANTS = BASE_URL + "hotel/gethotels?country_id=";
+    private final String GET_RESTAURANTS = BASE_URL + "restaurant/getrestaurants?country_id=";
 
     public enum Tag {
         LOGIN,
