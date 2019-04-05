@@ -3,9 +3,12 @@ package com.mti.cityguide.restaurants;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,7 +16,10 @@ import android.widget.Toast;
 import com.mti.cityguide.R;
 import com.mti.cityguide.base.BaseFragment;
 import com.mti.cityguide.helpers.Constants;
+import com.mti.cityguide.helpers.Utilities;
 import com.mti.cityguide.model.Restaurant;
+
+import java.util.ArrayList;
 
 public class RestaurantsFragment extends BaseFragment implements RestaurantsView, RestaurantsAdapter.IRestaurantsInteraction {
     private Context context;
@@ -21,7 +27,8 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsView
     private RestaurantsAdapter adapter;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
-    private TextView txtError;
+    private TextView txtError, txtFilter, txtCategory, txtSearch;
+    private EditText edtSearch;
 
     public static RestaurantsFragment newInstance(int countryId, int cityId, int areaId) {
         Bundle args = new Bundle();
@@ -43,6 +50,7 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsView
                 , getArguments() == null ? Constants.GeneralKeys.ALL : getArguments().getInt(Constants.BundleKeys.AREA_ID));
         adapter = new RestaurantsAdapter(context, presenter.getListRestaurants(), this);
         recyclerView.setAdapter(adapter);
+        presenter.loadCategories();
         presenter.loadData();
     }
 
@@ -52,7 +60,67 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsView
         recyclerView = v.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         progressBar = v.findViewById(R.id.progressBar);
+        txtFilter = v.findViewById(R.id.txtFilter);
+        txtCategory = v.findViewById(R.id.txtCategory);
+        txtSearch = v.findViewById(R.id.txtSearch);
+        edtSearch = v.findViewById(R.id.edtSearch);
         txtError = v.findViewById(R.id.txtError);
+    }
+
+    @Override
+    protected void setListeners() {
+        super.setListeners();
+        txtFilter.setOnClickListener(v -> onFilterClicked());
+        txtCategory.setOnClickListener(v -> onCategoryClicked(presenter.getListRestaurantCategoriesTitles()));
+        txtSearch.setOnClickListener(v -> handleSearchCLicked());
+        edtSearch.setOnEditorActionListener((v, actionId, event) -> onSearchClicked(actionId));
+    }
+
+
+    @Override
+    public void handleSearchCLicked() {
+        if (edtSearch.getVisibility() == View.VISIBLE) {
+            callSearch("");
+        }
+        edtSearch.setVisibility(edtSearch.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+    }
+
+
+    @Override
+    public void callSearch(String searchKeyword) {
+        presenter.getRestaurantFilter().setSearch(searchKeyword);
+        presenter.loadData();
+        Utilities.hideSoftKeyboard(context);
+    }
+
+
+    @Override
+    public boolean onSearchClicked(int actionId) {
+        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+            callSearch(edtSearch.getText().toString());
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void onFilterClicked() {
+
+    }
+
+    @Override
+    public void onCategoryClicked(ArrayList<String> listCategories) {
+        if (listCategories.isEmpty())
+            showErrorMessage(context.getString(R.string.no_data_available));
+        else
+            new AlertDialog.Builder(context)
+                    .setItems(listCategories.toArray(new String[0]), (dialog, selectedItemPositions) -> {
+                        dialog.dismiss();
+                        presenter.getRestaurantFilter().setCategoryId(presenter.getListRestaurantCategories().get(selectedItemPositions).getCategoryId());
+                        txtCategory.setText(selectedItemPositions != 0 ? listCategories.get(selectedItemPositions) : getString(R.string.category));
+                        presenter.loadData();
+                    })
+                    .show();
     }
 
     @Override
@@ -81,7 +149,7 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsView
     public void showEmptyView() {
         recyclerView.setVisibility(View.GONE);
         txtError.setVisibility(View.VISIBLE);
-        txtError.setText(getString(R.string.no_hotels_found));
+        txtError.setText(getString(R.string.no_restaurants_found));
     }
 
     @Override

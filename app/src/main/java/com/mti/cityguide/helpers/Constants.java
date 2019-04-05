@@ -12,6 +12,8 @@ public class Constants {
         public static final int DEFAULT_PAGE_NUMBER = 1;
         public static final int DEFAULT_PAGE_SIZE = 5;
         public static final int ALL = 0;
+        public static final String ASC = "ASC";
+        public static final String DESC = "DESC";
     }
 
     public class BundleKeys {

@@ -26,9 +26,9 @@ public class Restaurant {
     @SerializedName("restaurant_img_url")
     private String restaurantImgUrl;
     @SerializedName("restaurant_lat")
-    private String restaurantLat;
+    private Double restaurantLat;
     @SerializedName("restaurant_lng")
-    private String restaurantLng;
+    private Double restaurantLng;
     @SerializedName("restaurant_area_id")
     private String restaurantAreaId;
     @SerializedName("restaurant_rate")
@@ -134,19 +134,19 @@ public class Restaurant {
         this.restaurantImgUrl = restaurantImgUrl;
     }
 
-    public String getRestaurantLat() {
+    public Double getRestaurantLat() {
         return restaurantLat;
     }
 
-    public void setRestaurantLat(String restaurantLat) {
+    public void setRestaurantLat(Double restaurantLat) {
         this.restaurantLat = restaurantLat;
     }
 
-    public String getRestaurantLng() {
+    public Double getRestaurantLng() {
         return restaurantLng;
     }
 
-    public void setRestaurantLng(String restaurantLng) {
+    public void setRestaurantLng(Double restaurantLng) {
         this.restaurantLng = restaurantLng;
     }
 

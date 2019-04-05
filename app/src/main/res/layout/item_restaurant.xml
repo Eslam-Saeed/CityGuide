@@ -103,8 +103,8 @@
                 android:layout_below="@id/separator"
                 android:layout_marginStart="@dimen/margin_medium"
                 android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginEnd="@dimen/margin_medium"
                 android:layout_marginBottom="@dimen/padding_small"
+                android:layout_toStartOf="@+id/imgLocation"
                 android:ellipsize="end"
                 android:lines="3"
                 android:maxLines="3"
@@ -112,6 +112,17 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/fontColor"
                 android:textSize="@dimen/font_lsmall" />
+
+            <ImageView
+                android:id="@+id/imgLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/separator"
+                android:layout_alignParentEnd="true"
+                android:padding="@dimen/margin_small"
+                android:paddingBottom="@dimen/padding_xSmall"
+                android:src="@drawable/map_icon"
+                android:visibility="visible" />
 
             <ImageView
                 android:id="@+id/imgRecommended"

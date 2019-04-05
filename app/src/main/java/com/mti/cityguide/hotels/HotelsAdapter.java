@@ -51,6 +51,7 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
                 Picasso.get().load(hotel.getHotelImgUrl()).placeholder(R.drawable.default_image).into(myViewHolder.imgHotel);
             myViewHolder.ratingBar.setIsIndicator(true);
             myViewHolder.ratingBar.setRating(hotel.getHotelRating());
+            myViewHolder.imgLocation.setVisibility((hotel.getHotelLat() == null || hotel.getHotelLng() == null) ? View.GONE : View.VISIBLE);
             myViewHolder.setListener(hotel);
         }
     }

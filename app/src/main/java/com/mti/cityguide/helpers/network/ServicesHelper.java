@@ -1,6 +1,7 @@
 package com.mti.cityguide.helpers.network;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,6 +14,8 @@ import com.mti.cityguide.helpers.DTO.CountryResponse;
 import com.mti.cityguide.helpers.DTO.HotelResponse;
 import com.mti.cityguide.helpers.DTO.LoginRequest;
 import com.mti.cityguide.helpers.DTO.LoginResponse;
+import com.mti.cityguide.helpers.DTO.RestaurantCategoriesResponse;
+import com.mti.cityguide.helpers.DTO.RestaurantFilter;
 import com.mti.cityguide.helpers.DTO.RestaurantResponse;
 import com.mti.cityguide.model.User;
 
@@ -34,10 +37,11 @@ public class ServicesHelper {
     private final String AREAS_URL = BASE_URL + "area/getareasbycity?city_id=";
     private final String GET_HOTELS = BASE_URL + "hotel/gethotels?country_id=";
     private final String GET_RESTAURANTS = BASE_URL + "restaurant/getrestaurants?country_id=";
+    private final String GET_RESTAURANTS_CATEGORIES = BASE_URL + "restaurantCategory/getrestaurantcategories";
 
     public enum Tag {
         LOGIN,
-        REGISTER, COUNTRIES, CITIES, AREAS
+        REGISTER, COUNTRIES, CITIES, AREAS, HOTELS, RESTAURANTS, RESTAURANTS_CATEGORIES
     }
 
     private ServicesHelper(Context context) {
@@ -149,7 +153,7 @@ public class ServicesHelper {
                     getHotelsSuccessListener.onResponse(hotelResponse);
                 } else
                     getHotelsErrorListener.onErrorResponse(new VolleyError());
-            }, getHotelsErrorListener, Tag.CITIES);
+            }, getHotelsErrorListener, Tag.HOTELS);
         } catch (Exception e) {
             e.printStackTrace();
             getHotelsErrorListener.onErrorResponse(new VolleyError());
@@ -161,22 +165,52 @@ public class ServicesHelper {
     }
 
     //=============================== Restaurants ====================================
-    public void getRestaurants(Context context, int countryId, int cityId, int areaId, final Response.Listener<RestaurantResponse> getRestaurantsSuccessListener, final Response.ErrorListener getRestaurantsErrorListener) {
+    public void getRestaurants(Context context, RestaurantFilter restaurantFilter, final Response.Listener<RestaurantResponse> getRestaurantsSuccessListener, final Response.ErrorListener getRestaurantsErrorListener) {
         try {
-            new CustomJsonObjectRequest(context, Request.Method.GET, getRestaurantsUrl(countryId, cityId, areaId), null, response -> {
+            new CustomJsonObjectRequest(context, Request.Method.GET, getRestaurantsUrl(restaurantFilter), null, response -> {
                 if (response != null && !response.toString().contains(FAIL_CODE)) {
                     RestaurantResponse restaurantResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), RestaurantResponse.class);
                     getRestaurantsSuccessListener.onResponse(restaurantResponse);
                 } else
                     getRestaurantsErrorListener.onErrorResponse(new VolleyError());
-            }, getRestaurantsErrorListener, Tag.CITIES);
+            }, getRestaurantsErrorListener, Tag.RESTAURANTS);
         } catch (Exception e) {
             e.printStackTrace();
             getRestaurantsErrorListener.onErrorResponse(new VolleyError());
         }
     }
 
-    private String getRestaurantsUrl(int countryId, int cityId, int areaId) {
-        return GET_RESTAURANTS + countryId + "&city_id=" + cityId + "&area_id=" + areaId;
+    private String getRestaurantsUrl(RestaurantFilter restaurantFilter) {
+        String URL;
+        URL = GET_RESTAURANTS + restaurantFilter.getCountryId() + "&city_id=" +
+                restaurantFilter.getCityId() + "&area_id=" + restaurantFilter.getAreaId();
+        URL = URL.concat("&search=").concat(restaurantFilter.getSearch());
+
+        if (!TextUtils.isEmpty(restaurantFilter.getRecommended()))
+            URL = URL.concat("&recommended=").concat(restaurantFilter.getRecommended());
+
+        if (!TextUtils.isEmpty(restaurantFilter.getRecommended()))
+            URL = URL.concat("&a_z=").concat(restaurantFilter.getSortAZ());
+
+        if (restaurantFilter.getCategoryId() != -1)
+            URL = URL.concat("&category_id=").concat(String.valueOf(restaurantFilter.getCategoryId()));
+
+        return URL;
+    }
+    //============================= Restaurants Categories ===========================
+
+    public void getRestaurantsCategories(Context context, final Response.Listener<RestaurantCategoriesResponse> getRestaurantCategoriesSuccessListener, final Response.ErrorListener getRestaurantCategoriesErrorListener) {
+        try {
+            new CustomJsonObjectRequest(context, Request.Method.GET, GET_RESTAURANTS_CATEGORIES, null, response -> {
+                if (response != null && !response.toString().contains(FAIL_CODE)) {
+                    RestaurantCategoriesResponse countryResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), RestaurantCategoriesResponse.class);
+                    getRestaurantCategoriesSuccessListener.onResponse(countryResponse);
+                } else
+                    getRestaurantCategoriesErrorListener.onErrorResponse(new VolleyError());
+            }, getRestaurantCategoriesErrorListener, Tag.RESTAURANTS_CATEGORIES);
+        } catch (Exception e) {
+            e.printStackTrace();
+            getRestaurantCategoriesErrorListener.onErrorResponse(new VolleyError());
+        }
     }
 }

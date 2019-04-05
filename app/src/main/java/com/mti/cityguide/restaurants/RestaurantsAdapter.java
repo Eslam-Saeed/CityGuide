@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.mti.cityguide.R;
 import com.mti.cityguide.helpers.UIUtilities;
+import com.mti.cityguide.helpers.Utilities;
 import com.mti.cityguide.model.Restaurant;
 import com.squareup.picasso.Picasso;
 
@@ -55,7 +56,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
             myViewHolder.ratingBar.setIsIndicator(true);
             myViewHolder.ratingBar.setRating(restaurant.getRestaurantRate());
             myViewHolder.imgRecommended.setVisibility(restaurant.getRestaurantRecommended() == 1 ? View.VISIBLE : View.GONE);
-
+            myViewHolder.imgLocation.setVisibility((restaurant.getRestaurantLat() == null || restaurant.getRestaurantLng() == null) ? View.GONE : View.VISIBLE);
             myViewHolder.setListener(restaurant);
         }
     }
@@ -71,7 +72,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
         private RoundedImageView imgRestaurant;
         private TextView txtRestaurantName, txtRestaurantCategory, txtRestaurantDescription;
         private RatingBar ratingBar;
-        private ImageView imgRecommended;
+        private ImageView imgRecommended, imgLocation;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -81,6 +82,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
             txtRestaurantDescription = itemView.findViewById(R.id.txtRestaurantDescription);
             ratingBar = itemView.findViewById(R.id.ratingBar);
             imgRecommended = itemView.findViewById(R.id.imgRecommended);
+            imgLocation = itemView.findViewById(R.id.imgLocation);
         }
 
         void setListener(Restaurant restaurant) {
@@ -88,6 +90,8 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
                 if (interaction != null)
                     interaction.onRestaurantClicked(restaurant);
             });
+
+            imgLocation.setOnClickListener(v -> Utilities.openMap(context, restaurant.getRestaurantLat(), restaurant.getRestaurantLng()));
         }
     }
 

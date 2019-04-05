@@ -38,8 +38,11 @@
     <string name="hotels_desc">Find hotels around you!</string>
     <string name="restaurants_desc">Find restaurants around you!</string>
     <string name="all">All</string>
-    <string name="filter">Filter</string>
     <string name="city">City</string>
     <string name="area">Area</string>
     <string name="no_hotels_found">No Hotels Found!</string>
+    <string name="filter">Filter</string>
+    <string name="category">Category</string>
+    <string name="search">Search</string>
+    <string name="no_restaurants_found">No restaurants found</string>
 </resources>
