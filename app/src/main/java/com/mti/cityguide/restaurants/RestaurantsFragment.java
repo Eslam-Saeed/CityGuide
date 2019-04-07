@@ -1,6 +1,7 @@
 package com.mti.cityguide.restaurants;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -20,6 +21,8 @@ import com.mti.cityguide.helpers.Utilities;
 import com.mti.cityguide.model.Restaurant;
 
 import java.util.ArrayList;
+
+import static android.app.Activity.RESULT_OK;
 
 public class RestaurantsFragment extends BaseFragment implements RestaurantsView, RestaurantsAdapter.IRestaurantsInteraction {
     private Context context;
@@ -105,7 +108,7 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsView
 
     @Override
     public void onFilterClicked() {
-
+        startActivityForResult(FilterActivity.startActivity(context, presenter.getRestaurantFilter()), Constants.RequestCodes.RESTAURANT_CODE);
     }
 
     @Override
@@ -155,5 +158,14 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsView
     @Override
     public void showErrorMessage(String errorMessage) {
         Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.RequestCodes.RESTAURANT_CODE && resultCode == RESULT_OK && data != null) {
+            presenter.setRestaurantFilter(data.getParcelableExtra(Constants.BundleKeys.RESTAURANT_FILTER));
+            presenter.loadData();
+        }
     }
 }

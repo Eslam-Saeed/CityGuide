@@ -21,6 +21,7 @@ public class Constants {
         public static final String CITY_ID = "city_id";
         public static final String AREA_ID = "area_id";
         public static final String COUNTRY_ID = "country_id";
+        public static final String RESTAURANT_FILTER = "restaurant_filter";
     }
 
     public class Localization {
@@ -39,7 +40,7 @@ public class Constants {
         public static final String LOGIN = "login";
         public static final String REGISTER = "register";
         public static final String HOTELS = "hotels";
-        public static final String RESTAURANTS= "restaurants";
+        public static final String RESTAURANTS = "restaurants";
     }
 
     public class User {
@@ -53,5 +54,6 @@ public class Constants {
 
     public class RequestCodes {
 
+        public static final int RESTAURANT_CODE = 1;
     }
 }

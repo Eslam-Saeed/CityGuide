@@ -45,4 +45,9 @@
     <string name="category">Category</string>
     <string name="search">Search</string>
     <string name="no_restaurants_found">No restaurants found</string>
+    <string name="apply">Apply</string>
+    <string name="recommended">Recommended</string>
+    <string name="sort">Sort</string>
+    <string name="a_z">A - Z</string>
+    <string name="z_a">Z - A</string>
 </resources>
