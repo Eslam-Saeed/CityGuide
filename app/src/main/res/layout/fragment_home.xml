@@ -151,7 +151,7 @@
             android:paddingTop="@dimen/margin_small"
             android:paddingEnd="@dimen/margin_xxlarge"
             android:paddingBottom="@dimen/margin_small"
-            android:text="@string/filter"
+            android:text="@string/find"
             android:textColor="@color/white"
             android:textSize="@dimen/font_lsmall" />
 
