@@ -15,7 +15,7 @@ import com.mti.cityguide.helpers.DTO.HotelResponse;
 import com.mti.cityguide.helpers.DTO.LoginRequest;
 import com.mti.cityguide.helpers.DTO.LoginResponse;
 import com.mti.cityguide.helpers.DTO.RestaurantCategoriesResponse;
-import com.mti.cityguide.helpers.DTO.RestaurantFilter;
+import com.mti.cityguide.helpers.DTO.RestaurantHotelFilter;
 import com.mti.cityguide.helpers.DTO.RestaurantResponse;
 import com.mti.cityguide.model.User;
 
@@ -145,9 +145,9 @@ public class ServicesHelper {
     }
 
     //=============================== Hotels ====================================
-    public void getHotels(Context context, int countryId, int cityId, int areaId, final Response.Listener<HotelResponse> getHotelsSuccessListener, final Response.ErrorListener getHotelsErrorListener) {
+    public void getHotels(Context context, RestaurantHotelFilter restaurantHotelFilter, final Response.Listener<HotelResponse> getHotelsSuccessListener, final Response.ErrorListener getHotelsErrorListener) {
         try {
-            new CustomJsonObjectRequest(context, Request.Method.GET, getHotelsUrl(countryId, cityId, areaId), null, response -> {
+            new CustomJsonObjectRequest(context, Request.Method.GET, getFilterUrl(restaurantHotelFilter, GET_HOTELS), null, response -> {
                 if (response != null && !response.toString().contains(FAIL_CODE)) {
                     HotelResponse hotelResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), HotelResponse.class);
                     getHotelsSuccessListener.onResponse(hotelResponse);
@@ -160,14 +160,10 @@ public class ServicesHelper {
         }
     }
 
-    private String getHotelsUrl(int countryId, int cityId, int areaId) {
-        return GET_HOTELS + countryId + "&city_id=" + cityId + "&area_id=" + areaId;
-    }
-
     //=============================== Restaurants ====================================
-    public void getRestaurants(Context context, RestaurantFilter restaurantFilter, final Response.Listener<RestaurantResponse> getRestaurantsSuccessListener, final Response.ErrorListener getRestaurantsErrorListener) {
+    public void getRestaurants(Context context, RestaurantHotelFilter restaurantHotelFilter, final Response.Listener<RestaurantResponse> getRestaurantsSuccessListener, final Response.ErrorListener getRestaurantsErrorListener) {
         try {
-            new CustomJsonObjectRequest(context, Request.Method.GET, getRestaurantsUrl(restaurantFilter), null, response -> {
+            new CustomJsonObjectRequest(context, Request.Method.GET, getFilterUrl(restaurantHotelFilter, GET_RESTAURANTS), null, response -> {
                 if (response != null && !response.toString().contains(FAIL_CODE)) {
                     RestaurantResponse restaurantResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), RestaurantResponse.class);
                     getRestaurantsSuccessListener.onResponse(restaurantResponse);
@@ -180,20 +176,26 @@ public class ServicesHelper {
         }
     }
 
-    private String getRestaurantsUrl(RestaurantFilter restaurantFilter) {
+    private String getFilterUrl(RestaurantHotelFilter restaurantHotelFilter, String baseURL) {
         String URL;
-        URL = GET_RESTAURANTS + restaurantFilter.getCountryId() + "&city_id=" +
-                restaurantFilter.getCityId() + "&area_id=" + restaurantFilter.getAreaId();
-        URL = URL.concat("&search=").concat(restaurantFilter.getSearch());
+        URL = baseURL + restaurantHotelFilter.getCountryId() + "&city_id=" +
+                restaurantHotelFilter.getCityId() + "&area_id=" + restaurantHotelFilter.getAreaId();
+        URL = URL.concat("&search=").concat(restaurantHotelFilter.getSearch());
 
-        if (!TextUtils.isEmpty(restaurantFilter.getRecommended()))
-            URL = URL.concat("&recommended=").concat(restaurantFilter.getRecommended());
+        if (!TextUtils.isEmpty(restaurantHotelFilter.getRecommended()))
+            URL = URL.concat("&recommended=").concat(restaurantHotelFilter.getRecommended());
 
-        if (!TextUtils.isEmpty(restaurantFilter.getRecommended()))
-            URL = URL.concat("&a_z=").concat(restaurantFilter.getSortAZ());
+        if (!TextUtils.isEmpty(restaurantHotelFilter.getRecommended()))
+            URL = URL.concat("&a_z=").concat(restaurantHotelFilter.getSortAZ());
 
-        if (restaurantFilter.getCategoryId() != -1)
-            URL = URL.concat("&category_id=").concat(String.valueOf(restaurantFilter.getCategoryId()));
+        if (restaurantHotelFilter.getCategoryId() != -1)
+            URL = URL.concat("&category_id=").concat(String.valueOf(restaurantHotelFilter.getCategoryId()));
+
+        if (!TextUtils.isEmpty(restaurantHotelFilter.getPriceLow()))
+            URL = URL.concat("&priceLow=").concat(restaurantHotelFilter.getPriceLow());
+
+        if (!TextUtils.isEmpty(restaurantHotelFilter.getPriceHigh()))
+            URL = URL.concat("&priceHigh=").concat(restaurantHotelFilter.getPriceHigh());
 
         return URL;
     }

@@ -8,4 +8,12 @@ public interface HotelsView extends BaseView {
     void onHotelsLoadedSuccessfully();
 
     void showEmptyView();
+
+    void onFilterClicked();
+
+    boolean onSearchClicked(int actionId);
+
+    void handleSearchCLicked();
+
+    void callSearch(String searchKeyword);
 }

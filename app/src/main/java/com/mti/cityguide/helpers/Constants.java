@@ -22,6 +22,7 @@ public class Constants {
         public static final String AREA_ID = "area_id";
         public static final String COUNTRY_ID = "country_id";
         public static final String RESTAURANT_FILTER = "restaurant_filter";
+        public static final String IS_HOTEL = "is_hotel";
     }
 
     public class Localization {

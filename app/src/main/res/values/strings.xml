@@ -50,4 +50,9 @@
     <string name="sort">Sort</string>
     <string name="a_z">A - Z</string>
     <string name="z_a">Z - A</string>
+    <string name="avg_price">Average Price</string>
+    <string name="from">From</string>
+    <string name="_0">0</string>
+    <string name="to">To</string>
+    <string name="average_room_price">"Average room price: "</string>
 </resources>

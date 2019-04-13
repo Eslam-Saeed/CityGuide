@@ -3,28 +3,33 @@ package com.mti.cityguide.helpers.DTO;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class RestaurantFilter implements Parcelable {
+public class RestaurantHotelFilter implements Parcelable {
     private int cityId, areaId, countryId, categoryId;
+    private String priceLow, priceHigh;
     private String search, recommended, sortAZ;
 
-    public RestaurantFilter(int countryId, int cityId, int areaId) {
+    public RestaurantHotelFilter(int countryId, int cityId, int areaId) {
         this.cityId = cityId;
         this.areaId = areaId;
         this.countryId = countryId;
         this.categoryId = -1;
+        this.priceLow = "";
+        this.priceHigh = "";
         this.search = "";
         this.recommended = "";
         this.sortAZ = "";
     }
 
-    public RestaurantFilter() {
+    public RestaurantHotelFilter() {
     }
 
-    protected RestaurantFilter(Parcel in) {
+    protected RestaurantHotelFilter(Parcel in) {
         cityId = in.readInt();
         areaId = in.readInt();
         countryId = in.readInt();
         categoryId = in.readInt();
+        priceLow = in.readString();
+        priceHigh = in.readString();
         search = in.readString();
         recommended = in.readString();
         sortAZ = in.readString();
@@ -36,6 +41,8 @@ public class RestaurantFilter implements Parcelable {
         dest.writeInt(areaId);
         dest.writeInt(countryId);
         dest.writeInt(categoryId);
+        dest.writeString(priceLow);
+        dest.writeString(priceHigh);
         dest.writeString(search);
         dest.writeString(recommended);
         dest.writeString(sortAZ);
@@ -46,15 +53,15 @@ public class RestaurantFilter implements Parcelable {
         return 0;
     }
 
-    public static final Creator<RestaurantFilter> CREATOR = new Creator<RestaurantFilter>() {
+    public static final Creator<RestaurantHotelFilter> CREATOR = new Creator<RestaurantHotelFilter>() {
         @Override
-        public RestaurantFilter createFromParcel(Parcel in) {
-            return new RestaurantFilter(in);
+        public RestaurantHotelFilter createFromParcel(Parcel in) {
+            return new RestaurantHotelFilter(in);
         }
 
         @Override
-        public RestaurantFilter[] newArray(int size) {
-            return new RestaurantFilter[size];
+        public RestaurantHotelFilter[] newArray(int size) {
+            return new RestaurantHotelFilter[size];
         }
     };
 
@@ -112,5 +119,21 @@ public class RestaurantFilter implements Parcelable {
 
     public void setSortAZ(String sortAZ) {
         this.sortAZ = sortAZ;
+    }
+
+    public String getPriceLow() {
+        return priceLow;
+    }
+
+    public void setPriceLow(String priceLow) {
+        this.priceLow = priceLow;
+    }
+
+    public String getPriceHigh() {
+        return priceHigh;
+    }
+
+    public void setPriceHigh(String priceHigh) {
+        this.priceHigh = priceHigh;
     }
 }

@@ -49,6 +49,95 @@
                 android:textSize="@dimen/font_xlarge" />
 
             <View
+                android:id="@+id/separatorPrice"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_large"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:background="@color/separatorLight"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:id="@+id/rlAvgPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txtAvg"
+                    style="@style/FontSemiBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:text="@string/avg_price"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/fontColor"
+                    android:textSize="@dimen/font_xlarge" />
+
+                <TextView
+                    android:id="@+id/txtFrom"
+                    style="@style/FontSemiBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtAvg"
+                    android:layout_alignBaseline="@+id/edtFrom"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_small"
+                    android:text="@string/from"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/fontColor"
+                    android:textSize="@dimen/font_large" />
+
+                <EditText
+                    android:id="@+id/edtFrom"
+                    style="@style/FontSemiBold"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtAvg"
+                    android:layout_toEndOf="@id/txtFrom"
+                    android:hint="@string/_0"
+                    android:inputType="number"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/font_large" />
+
+                <TextView
+                    android:id="@+id/txtTo"
+                    style="@style/FontSemiBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtAvg"
+                    android:layout_alignBaseline="@+id/edtTo"
+                    android:layout_marginStart="@dimen/margin_large"
+                    android:layout_marginEnd="@dimen/margin_small"
+                    android:layout_toEndOf="@id/edtFrom"
+                    android:text="@string/to"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/fontColor"
+                    android:textSize="@dimen/font_large" />
+
+                <EditText
+                    android:id="@+id/edtTo"
+                    style="@style/FontSemiBold"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtAvg"
+                    android:layout_toEndOf="@id/txtTo"
+                    android:hint="@string/_0"
+                    android:inputType="number"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/font_large" />
+
+
+            </RelativeLayout>
+
+            <View
                 android:id="@+id/separator"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_1dp"

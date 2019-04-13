@@ -5,6 +5,10 @@ import com.google.gson.annotations.SerializedName;
 public class Hotel {
     @SerializedName("hotel_id")
     private String hotelId;
+    @SerializedName("hotel_recommended")
+    private int recommended;
+    @SerializedName("hotel_avg_price")
+    private int avgPrice;
     @SerializedName("hotel_name")
     private String hotelName;
     @SerializedName("hotel_description")
@@ -82,5 +86,21 @@ public class Hotel {
 
     public void setHotelRating(Float hotelRating) {
         this.hotelRating = hotelRating;
+    }
+
+    public int getRecommended() {
+        return recommended;
+    }
+
+    public void setRecommended(int recommended) {
+        this.recommended = recommended;
+    }
+
+    public int getAvgPrice() {
+        return avgPrice;
+    }
+
+    public void setAvgPrice(int avgPrice) {
+        this.avgPrice = avgPrice;
     }
 }

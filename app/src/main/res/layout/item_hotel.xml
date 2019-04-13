@@ -59,6 +59,17 @@
                     android:layout_alignBottom="@+id/imgHotel"
                     android:background="@drawable/scrim_gradient"
                     android:elevation="@dimen/dimen_1dp" />
+
+                <ImageView
+                    android:id="@+id/imgRecommended"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_medium"
+                    android:paddingBottom="@dimen/padding_xSmall"
+                    android:src="@drawable/ic_recommended"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
             </RelativeLayout>
 
             <RatingBar
@@ -84,12 +95,45 @@
                 android:paddingBottom="@dimen/padding_xSmall"
                 android:src="@drawable/map_icon" />
 
+
+            <TextView
+                android:id="@+id/txtHotelAvgPrice"
+                style="@style/FontSemiBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ratingBar"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/padding_xSmall"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/average_room_price"
+                android:textAlignment="viewStart"
+                android:textColor="@color/fontColor"
+                android:textSize="@dimen/font_large" />
+
+            <TextView
+                android:id="@+id/txtHotelAvgPriceValue"
+                style="@style/FontSemiBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ratingBar"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_medium"
+                android:layout_toEndOf="@+id/txtHotelAvgPrice"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/font_large" />
+
+
             <TextView
                 android:id="@+id/txtHotelDescription"
                 style="@style/FontSemiLight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ratingBar"
+                android:layout_below="@id/txtHotelAvgPrice"
                 android:layout_marginStart="@dimen/margin_medium"
                 android:layout_marginTop="@dimen/margin_small"
                 android:layout_marginEnd="@dimen/margin_medium"

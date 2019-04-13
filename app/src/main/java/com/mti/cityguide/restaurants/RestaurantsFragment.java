@@ -91,7 +91,7 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsView
 
     @Override
     public void callSearch(String searchKeyword) {
-        presenter.getRestaurantFilter().setSearch(searchKeyword);
+        presenter.getRestaurantHotelFilter().setSearch(searchKeyword);
         presenter.loadData();
         Utilities.hideSoftKeyboard(context);
     }
@@ -108,7 +108,7 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsView
 
     @Override
     public void onFilterClicked() {
-        startActivityForResult(FilterActivity.startActivity(context, presenter.getRestaurantFilter()), Constants.RequestCodes.RESTAURANT_CODE);
+        startActivityForResult(FilterActivity.createIntent(context, presenter.getRestaurantHotelFilter(), false), Constants.RequestCodes.RESTAURANT_CODE);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsView
             new AlertDialog.Builder(context)
                     .setItems(listCategories.toArray(new String[0]), (dialog, selectedItemPositions) -> {
                         dialog.dismiss();
-                        presenter.getRestaurantFilter().setCategoryId(presenter.getListRestaurantCategories().get(selectedItemPositions).getCategoryId());
+                        presenter.getRestaurantHotelFilter().setCategoryId(presenter.getListRestaurantCategories().get(selectedItemPositions).getCategoryId());
                         txtCategory.setText(selectedItemPositions != 0 ? listCategories.get(selectedItemPositions) : getString(R.string.category));
                         presenter.loadData();
                     })
@@ -164,7 +164,7 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsView
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constants.RequestCodes.RESTAURANT_CODE && resultCode == RESULT_OK && data != null) {
-            presenter.setRestaurantFilter(data.getParcelableExtra(Constants.BundleKeys.RESTAURANT_FILTER));
+            presenter.setRestaurantHotelFilter(data.getParcelableExtra(Constants.BundleKeys.RESTAURANT_FILTER));
             presenter.loadData();
         }
     }

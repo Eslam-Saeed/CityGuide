@@ -45,6 +45,7 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
         if (hotel != null) {
             UIUtilities.displayText(myViewHolder.txtHotelTitle, hotel.getHotelName());
             UIUtilities.displayText(myViewHolder.txtHotelDescription, hotel.getHotelDescription());
+            UIUtilities.displayText(myViewHolder.txtHotelAvgPriceValue, hotel.getAvgPrice() + "$ /Day");
             if (TextUtils.isEmpty(hotel.getHotelImgUrl()))
                 myViewHolder.imgHotel.setBackgroundResource(R.drawable.default_image);
             else
@@ -52,6 +53,7 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
             myViewHolder.ratingBar.setIsIndicator(true);
             myViewHolder.ratingBar.setRating(hotel.getHotelRating());
             myViewHolder.imgLocation.setVisibility((hotel.getHotelLat() == null || hotel.getHotelLng() == null) ? View.GONE : View.VISIBLE);
+            myViewHolder.imgRecommended.setVisibility(hotel.getRecommended() == 1 ? View.VISIBLE : View.GONE);
             myViewHolder.setListener(hotel);
         }
     }
@@ -66,15 +68,17 @@ public class HotelsAdapter extends RecyclerView.Adapter<HotelsAdapter.MyViewHold
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         private RoundedImageView imgHotel;
-        private ImageView imgLocation;
-        private TextView txtHotelTitle, txtHotelDescription;
+        private ImageView imgLocation, imgRecommended;
+        private TextView txtHotelTitle, txtHotelDescription, txtHotelAvgPriceValue;
         private RatingBar ratingBar;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imgHotel = itemView.findViewById(R.id.imgHotel);
+            imgRecommended = itemView.findViewById(R.id.imgRecommended);
             imgLocation = itemView.findViewById(R.id.imgLocation);
             txtHotelTitle = itemView.findViewById(R.id.txtHotelTitle);
+            txtHotelAvgPriceValue = itemView.findViewById(R.id.txtHotelAvgPriceValue);
             txtHotelDescription = itemView.findViewById(R.id.txtHotelDescription);
             ratingBar = itemView.findViewById(R.id.ratingBar);
         }

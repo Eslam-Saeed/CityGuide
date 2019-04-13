@@ -7,7 +7,7 @@ import com.android.volley.Response;
 import com.mti.cityguide.R;
 import com.mti.cityguide.base.BasePresenter;
 import com.mti.cityguide.helpers.DTO.RestaurantCategoriesResponse;
-import com.mti.cityguide.helpers.DTO.RestaurantFilter;
+import com.mti.cityguide.helpers.DTO.RestaurantHotelFilter;
 import com.mti.cityguide.helpers.DTO.RestaurantResponse;
 import com.mti.cityguide.helpers.network.ServicesHelper;
 import com.mti.cityguide.helpers.network.VolleyErrorHandler;
@@ -20,13 +20,13 @@ public class RestaurantsPresenter extends BasePresenter {
     private Context context;
     private RestaurantsView view;
     private ArrayList<Restaurant> listRestaurants;
-    private RestaurantFilter restaurantFilter;
+    private RestaurantHotelFilter restaurantHotelFilter;
     private ArrayList<RestaurantCategory> listRestaurantCategories;
 
     RestaurantsPresenter(Context context, RestaurantsView view, int cityId, int areaId, int countryId) {
         this.context = context;
         this.view = view;
-        this.restaurantFilter = new RestaurantFilter(countryId, cityId, areaId);
+        this.restaurantHotelFilter = new RestaurantHotelFilter(countryId, cityId, areaId);
         this.listRestaurants = new ArrayList<>();
         this.listRestaurantCategories = new ArrayList<>();
     }
@@ -37,7 +37,7 @@ public class RestaurantsPresenter extends BasePresenter {
 
     void loadData() {
         view.showProgress(true);
-        ServicesHelper.getInstance(context).getRestaurants(context, restaurantFilter,
+        ServicesHelper.getInstance(context).getRestaurants(context, restaurantHotelFilter,
                 getRestaurantsSuccessListener, getErrorSuccessListener);
     }
 
@@ -74,12 +74,12 @@ public class RestaurantsPresenter extends BasePresenter {
         this.listRestaurants = listRestaurants;
     }
 
-    RestaurantFilter getRestaurantFilter() {
-        return restaurantFilter;
+    RestaurantHotelFilter getRestaurantHotelFilter() {
+        return restaurantHotelFilter;
     }
 
-    public void setRestaurantFilter(RestaurantFilter restaurantFilter) {
-        this.restaurantFilter = restaurantFilter;
+    public void setRestaurantHotelFilter(RestaurantHotelFilter restaurantHotelFilter) {
+        this.restaurantHotelFilter = restaurantHotelFilter;
     }
 
     ArrayList<RestaurantCategory> getListRestaurantCategories() {
