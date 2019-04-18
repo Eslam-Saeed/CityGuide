@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class RestaurantHotelFilter implements Parcelable {
-    private int cityId, areaId, countryId, categoryId;
+    private int cityId, areaId, countryId, categoryId, roomType; //1 for Single & 2 for Double
     private String priceLow, priceHigh;
     private String search, recommended, sortAZ;
 
@@ -18,6 +18,7 @@ public class RestaurantHotelFilter implements Parcelable {
         this.search = "";
         this.recommended = "";
         this.sortAZ = "";
+        this.roomType = -1;
     }
 
     public RestaurantHotelFilter() {
@@ -28,6 +29,7 @@ public class RestaurantHotelFilter implements Parcelable {
         areaId = in.readInt();
         countryId = in.readInt();
         categoryId = in.readInt();
+        roomType = in.readInt();
         priceLow = in.readString();
         priceHigh = in.readString();
         search = in.readString();
@@ -41,6 +43,7 @@ public class RestaurantHotelFilter implements Parcelable {
         dest.writeInt(areaId);
         dest.writeInt(countryId);
         dest.writeInt(categoryId);
+        dest.writeInt(roomType);
         dest.writeString(priceLow);
         dest.writeString(priceHigh);
         dest.writeString(search);
@@ -135,5 +138,13 @@ public class RestaurantHotelFilter implements Parcelable {
 
     public void setPriceHigh(String priceHigh) {
         this.priceHigh = priceHigh;
+    }
+
+    public int getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(int roomType) {
+        this.roomType = roomType;
     }
 }

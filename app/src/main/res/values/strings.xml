@@ -56,4 +56,7 @@
     <string name="_0">0</string>
     <string name="to">To</string>
     <string name="average_room_price">"Average room price: "</string>
+    <string name="roomType">Room type</string>
+    <string name="single">Single</string>
+    <string name="doubleT">Double</string>
 </resources>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -25,8 +26,9 @@ public class FilterActivity extends BaseActivity {
     private RestaurantHotelFilter filter;
 
     private View separatorPrice;
-    private RelativeLayout rlAvgPrice;
+    private RelativeLayout rlAvgPrice, rlRoomType;
     private EditText edtFrom, edtTo;
+    private CheckBox chkSingle, chkDouble;
     private boolean isHotel;
 
     public static Intent createIntent(Context context, RestaurantHotelFilter filter, boolean isHotel) {
@@ -58,6 +60,9 @@ public class FilterActivity extends BaseActivity {
         rlAvgPrice = findViewById(R.id.rlAvgPrice);
         edtFrom = findViewById(R.id.edtFrom);
         edtTo = findViewById(R.id.edtTo);
+        rlRoomType = findViewById(R.id.rlRoomType);
+        chkSingle = findViewById(R.id.chkSingle);
+        chkDouble = findViewById(R.id.chkDouble);
     }
 
     @Override
@@ -68,6 +73,7 @@ public class FilterActivity extends BaseActivity {
     private void loadDataIntoViews() {
         separatorPrice.setVisibility(isHotel ? View.VISIBLE : View.GONE);
         rlAvgPrice.setVisibility(isHotel ? View.VISIBLE : View.GONE);
+        rlRoomType.setVisibility(isHotel ? View.VISIBLE : View.GONE);
 
         if (!TextUtils.isEmpty(filter.getSortAZ())) {
             if (filter.getSortAZ().equals(Constants.GeneralKeys.ASC))
@@ -84,6 +90,12 @@ public class FilterActivity extends BaseActivity {
 
             if (!TextUtils.isEmpty(filter.getPriceHigh()))
                 edtTo.setText(filter.getPriceHigh());
+
+            if (filter.getRoomType() != -1) {
+                chkDouble.setChecked(true);
+                if (filter.getRoomType() == 2)
+                    chkSingle.setChecked(true);
+            }
         }
     }
 
@@ -100,6 +112,11 @@ public class FilterActivity extends BaseActivity {
                 filter.setPriceLow(TextUtils.isEmpty(edtFrom.getText().toString()) ? "0" : edtFrom.getText().toString());
                 filter.setPriceHigh(TextUtils.isEmpty(edtTo.getText().toString()) ? "9999999" : edtTo.getText().toString());
             }
+
+            if (chkSingle.isChecked())
+                filter.setRoomType(-1);
+            else if (chkDouble.isChecked())
+                filter.setRoomType(1);
         }
 
         getIntent().putExtra(Constants.BundleKeys.RESTAURANT_FILTER, filter);

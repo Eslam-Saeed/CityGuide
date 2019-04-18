@@ -20,6 +20,8 @@ import com.mti.cityguide.helpers.Utilities;
 import com.mti.cityguide.model.Hotel;
 import com.mti.cityguide.restaurants.FilterActivity;
 
+import java.util.ArrayList;
+
 import static android.app.Activity.RESULT_OK;
 
 public class HotelsFragment extends BaseFragment implements HotelsView, HotelsAdapter.IHotelInteraction {
