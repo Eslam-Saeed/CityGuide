@@ -18,9 +18,7 @@ import com.mti.cityguide.base.BaseFragment;
 import com.mti.cityguide.helpers.Constants;
 import com.mti.cityguide.helpers.Utilities;
 import com.mti.cityguide.model.Hotel;
-import com.mti.cityguide.restaurants.FilterActivity;
-
-import java.util.ArrayList;
+import com.mti.cityguide.restaurants.listing.FilterActivity;
 
 import static android.app.Activity.RESULT_OK;
 

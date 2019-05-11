@@ -1,8 +1,11 @@
 package com.mti.cityguide.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Restaurant {
+public class Restaurant implements Parcelable {
     @SerializedName("city_id")
     private String cityId;
     @SerializedName("city_name")
@@ -45,6 +48,90 @@ public class Restaurant {
     private String categoryName;
     @SerializedName("category_code")
     private String categoryCode;
+
+    protected Restaurant(Parcel in) {
+        cityId = in.readString();
+        cityName = in.readString();
+        cityCode = in.readString();
+        cityCountryId = in.readString();
+        areaId = in.readString();
+        areaName = in.readString();
+        areaCityId = in.readString();
+        restaurantId = in.readString();
+        restaurantName = in.readString();
+        restaurantDescription = in.readString();
+        restaurantImgUrl = in.readString();
+        if (in.readByte() == 0) {
+            restaurantLat = null;
+        } else {
+            restaurantLat = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            restaurantLng = null;
+        } else {
+            restaurantLng = in.readDouble();
+        }
+        restaurantAreaId = in.readString();
+        restaurantRate = in.readFloat();
+        restaurantCatId = in.readString();
+        restaurantRecommended = in.readInt();
+        restaurantMenuId = in.readString();
+        categoryId = in.readString();
+        categoryName = in.readString();
+        categoryCode = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(cityId);
+        dest.writeString(cityName);
+        dest.writeString(cityCode);
+        dest.writeString(cityCountryId);
+        dest.writeString(areaId);
+        dest.writeString(areaName);
+        dest.writeString(areaCityId);
+        dest.writeString(restaurantId);
+        dest.writeString(restaurantName);
+        dest.writeString(restaurantDescription);
+        dest.writeString(restaurantImgUrl);
+        if (restaurantLat == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(restaurantLat);
+        }
+        if (restaurantLng == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(restaurantLng);
+        }
+        dest.writeString(restaurantAreaId);
+        dest.writeFloat(restaurantRate);
+        dest.writeString(restaurantCatId);
+        dest.writeInt(restaurantRecommended);
+        dest.writeString(restaurantMenuId);
+        dest.writeString(categoryId);
+        dest.writeString(categoryName);
+        dest.writeString(categoryCode);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
+        @Override
+        public Restaurant createFromParcel(Parcel in) {
+            return new Restaurant(in);
+        }
+
+        @Override
+        public Restaurant[] newArray(int size) {
+            return new Restaurant[size];
+        }
+    };
 
     public String getCityId() {
         return cityId;

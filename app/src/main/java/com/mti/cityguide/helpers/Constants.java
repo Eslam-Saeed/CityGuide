@@ -23,6 +23,8 @@ public class Constants {
         public static final String COUNTRY_ID = "country_id";
         public static final String RESTAURANT_FILTER = "restaurant_filter";
         public static final String IS_HOTEL = "is_hotel";
+        public static final String RESTAURANT_ID = "restaurant_id";
+        public static final String RESTAURANT = "restaurant";
     }
 
     public class Localization {
@@ -42,6 +44,7 @@ public class Constants {
         public static final String REGISTER = "register";
         public static final String HOTELS = "hotels";
         public static final String RESTAURANTS = "restaurants";
+        public static final String RESTAURANT_DETAILS = "restaurant_details";
     }
 
     public class User {

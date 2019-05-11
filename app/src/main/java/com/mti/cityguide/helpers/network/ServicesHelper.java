@@ -14,6 +14,7 @@ import com.mti.cityguide.helpers.DTO.CountryResponse;
 import com.mti.cityguide.helpers.DTO.HotelResponse;
 import com.mti.cityguide.helpers.DTO.LoginRequest;
 import com.mti.cityguide.helpers.DTO.LoginResponse;
+import com.mti.cityguide.helpers.DTO.MenuResponse;
 import com.mti.cityguide.helpers.DTO.RestaurantCategoriesResponse;
 import com.mti.cityguide.helpers.DTO.RestaurantHotelFilter;
 import com.mti.cityguide.helpers.DTO.RestaurantResponse;
@@ -38,10 +39,11 @@ public class ServicesHelper {
     private final String GET_HOTELS = BASE_URL + "hotel/gethotels?country_id=";
     private final String GET_RESTAURANTS = BASE_URL + "restaurant/getrestaurants?country_id=";
     private final String GET_RESTAURANTS_CATEGORIES = BASE_URL + "restaurantCategory/getrestaurantcategories";
+    private final String GET_MENU = BASE_URL + "menu/getmenus?restaurant_id=";
 
     public enum Tag {
         LOGIN,
-        REGISTER, COUNTRIES, CITIES, AREAS, HOTELS, RESTAURANTS, RESTAURANTS_CATEGORIES
+        REGISTER, COUNTRIES, CITIES, AREAS, HOTELS, RESTAURANTS, RESTAURANTS_CATEGORIES, GET_MENU
     }
 
     private ServicesHelper(Context context) {
@@ -216,6 +218,22 @@ public class ServicesHelper {
         } catch (Exception e) {
             e.printStackTrace();
             getRestaurantCategoriesErrorListener.onErrorResponse(new VolleyError());
+        }
+    }
+
+    //=============================== Restaurants ====================================
+    public void getMenus(Context context, int restaurantId, final Response.Listener<MenuResponse> getMenuSuccessListener, final Response.ErrorListener getMenuErrorListener) {
+        try {
+            new CustomJsonObjectRequest(context, Request.Method.GET, GET_MENU + restaurantId, null, response -> {
+                if (response != null && !response.toString().contains(FAIL_CODE)) {
+                    MenuResponse restaurantResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), MenuResponse.class);
+                    getMenuSuccessListener.onResponse(restaurantResponse);
+                } else
+                    getMenuErrorListener.onErrorResponse(new VolleyError());
+            }, getMenuErrorListener, Tag.GET_MENU);
+        } catch (Exception e) {
+            e.printStackTrace();
+            getMenuErrorListener.onErrorResponse(new VolleyError());
         }
     }
 }

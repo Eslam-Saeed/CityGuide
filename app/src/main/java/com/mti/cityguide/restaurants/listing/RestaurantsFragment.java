@@ -1,4 +1,4 @@
-package com.mti.cityguide.restaurants;
+package com.mti.cityguide.restaurants.listing;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import com.mti.cityguide.base.BaseFragment;
 import com.mti.cityguide.helpers.Constants;
 import com.mti.cityguide.helpers.Utilities;
 import com.mti.cityguide.model.Restaurant;
+import com.mti.cityguide.restaurants.details.RestaurantDetailsActivity;
 
 import java.util.ArrayList;
 
@@ -138,7 +139,7 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsView
 
     @Override
     public void onRestaurantClicked(Restaurant restaurant) {
-        Toast.makeText(context, restaurant.toString() + " was clicked", Toast.LENGTH_SHORT).show();
+        RestaurantDetailsActivity.startActivity(context, restaurant);
     }
 
     @Override

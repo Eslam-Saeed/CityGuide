@@ -1,4 +1,4 @@
-package com.mti.cityguide.restaurants;
+package com.mti.cityguide.restaurants.listing;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
