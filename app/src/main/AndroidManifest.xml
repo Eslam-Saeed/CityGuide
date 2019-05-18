@@ -14,7 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".restaurants.details.RestaurantDetailsActivity"></activity>
+        <activity
+            android:name=".restaurants.details.RestaurantDetailsActivity"
+            android:parentActivityName=".restaurants.listing.RestaurantsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".restaurants.listing.FilterActivity"
             android:theme="@style/Popup_Window" />

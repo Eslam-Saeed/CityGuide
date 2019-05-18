@@ -3,6 +3,7 @@ package com.mti.cityguide.restaurants.details;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 
 import com.mti.cityguide.R;
 import com.mti.cityguide.base.BaseActivity;
@@ -32,7 +33,8 @@ public class RestaurantDetailsActivity extends BaseActivity {
 
     @Override
     protected void initializeViews() {
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setToolbar(toolbar, "", true, true);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class Menu {
     private String dishName;
     @SerializedName("dish_type_id")
     @Expose
-    private String dishTypeId;
+    private int dishTypeId;
     @SerializedName("dish_type_name")
     @Expose
     private String dishTypeName;
@@ -67,11 +67,11 @@ public class Menu {
         this.dishName = dishName;
     }
 
-    public String getDishTypeId() {
+    public int getDishTypeId() {
         return dishTypeId;
     }
 
-    public void setDishTypeId(String dishTypeId) {
+    public void setDishTypeId(int dishTypeId) {
         this.dishTypeId = dishTypeId;
     }
 

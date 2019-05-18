@@ -14,6 +14,9 @@ public class Constants {
         public static final int ALL = 0;
         public static final String ASC = "ASC";
         public static final String DESC = "DESC";
+        public static final int BREAKFAST = 1;
+        public static final int LUNCH = 2;
+        public static final int DINNER = 3;
     }
 
     public class BundleKeys {

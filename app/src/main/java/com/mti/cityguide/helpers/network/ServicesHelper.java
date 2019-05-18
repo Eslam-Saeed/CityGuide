@@ -28,8 +28,8 @@ public class ServicesHelper {
     private static ServicesHelper mInstance;
     private RequestQueue mRequestQueue;
 
-    private final String BASE_URL = "https://morethink2.000webhostapp.com/cityguide/index.php/api/";
-    //    private final String BASE_URL = "http://192.168.1.2/cityguide/index.php/api/";
+//    private final String BASE_URL = "https://morethink2.000webhostapp.com/cityguide/index.php/api/";
+        private final String BASE_URL = "http://192.168.1.10/cityguide/index.php/api/";
     private final String FAIL_CODE = "failed_fail";
     private final String LOGIN_URL = BASE_URL + "user/login";
     private final String REGISTER_URL = BASE_URL + "user/adduser";
