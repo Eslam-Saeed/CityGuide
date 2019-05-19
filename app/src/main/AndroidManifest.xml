@@ -15,6 +15,16 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".hotels.details.HotelDetailsActivity"
+            android:parentActivityName=".hotels.listing.HotelsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".restaurants.details.GradientActivity"
+            android:parentActivityName=".restaurants.details.RestaurantDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".restaurants.details.RestaurantDetailsActivity"
             android:parentActivityName=".restaurants.listing.RestaurantsActivity"
             android:screenOrientation="portrait"
@@ -28,7 +38,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".hotels.HotelsActivity"
+            android:name=".hotels.listing.HotelsActivity"
             android:parentActivityName=".home.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

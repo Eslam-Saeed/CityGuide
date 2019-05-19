@@ -35,6 +35,7 @@ public class RestaurantDetailsActivity extends BaseActivity {
     protected void initializeViews() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setToolbar(toolbar, "", true, true);
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.mti.cityguide.hotels;
+package com.mti.cityguide.hotels.listing;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import com.mti.cityguide.R;
 import com.mti.cityguide.base.BaseFragment;
 import com.mti.cityguide.helpers.Constants;
 import com.mti.cityguide.helpers.Utilities;
+import com.mti.cityguide.hotels.details.HotelDetailsActivity;
 import com.mti.cityguide.model.Hotel;
 import com.mti.cityguide.restaurants.listing.FilterActivity;
 
@@ -31,7 +32,7 @@ public class HotelsFragment extends BaseFragment implements HotelsView, HotelsAd
     private TextView txtError;
     private HotelsAdapter adapter;
 
-    private TextView  txtFilter, txtSearch;
+    private TextView txtFilter, txtSearch;
     private EditText edtSearch;
 
 
@@ -135,7 +136,7 @@ public class HotelsFragment extends BaseFragment implements HotelsView, HotelsAd
 
     @Override
     public void onHotelClicked(Hotel hotel) {
-        Toast.makeText(context, hotel.getHotelName() + " was clicked", Toast.LENGTH_SHORT).show();
+        HotelDetailsActivity.startActivity(context, hotel);
     }
 
     @Override

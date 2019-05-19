@@ -1,4 +1,4 @@
-package com.mti.cityguide.hotels;
+package com.mti.cityguide.hotels.listing;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

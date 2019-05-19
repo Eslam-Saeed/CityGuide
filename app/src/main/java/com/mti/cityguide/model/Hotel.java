@@ -1,8 +1,11 @@
 package com.mti.cityguide.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Hotel {
+public class Hotel implements Parcelable {
     @SerializedName("hotel_id")
     private String hotelId;
     @SerializedName("hotel_recommended")
@@ -23,6 +26,77 @@ public class Hotel {
     private Double hotelLng;
     @SerializedName("hotel_area_id")
     private String hotelAreaId;
+
+    protected Hotel(Parcel in) {
+        hotelId = in.readString();
+        recommended = in.readInt();
+        avgPrice = in.readInt();
+        hotelName = in.readString();
+        hotelDescription = in.readString();
+        hotelImgUrl = in.readString();
+        if (in.readByte() == 0) {
+            hotelRating = null;
+        } else {
+            hotelRating = in.readFloat();
+        }
+        if (in.readByte() == 0) {
+            hotelLat = null;
+        } else {
+            hotelLat = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            hotelLng = null;
+        } else {
+            hotelLng = in.readDouble();
+        }
+        hotelAreaId = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(hotelId);
+        dest.writeInt(recommended);
+        dest.writeInt(avgPrice);
+        dest.writeString(hotelName);
+        dest.writeString(hotelDescription);
+        dest.writeString(hotelImgUrl);
+        if (hotelRating == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeFloat(hotelRating);
+        }
+        if (hotelLat == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(hotelLat);
+        }
+        if (hotelLng == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(hotelLng);
+        }
+        dest.writeString(hotelAreaId);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Hotel> CREATOR = new Creator<Hotel>() {
+        @Override
+        public Hotel createFromParcel(Parcel in) {
+            return new Hotel(in);
+        }
+
+        @Override
+        public Hotel[] newArray(int size) {
+            return new Hotel[size];
+        }
+    };
 
     public String getHotelId() {
         return hotelId;

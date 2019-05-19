@@ -1,4 +1,4 @@
-package com.mti.cityguide.hotels;
+package com.mti.cityguide.hotels.listing;
 
 import com.mti.cityguide.base.BaseView;
 

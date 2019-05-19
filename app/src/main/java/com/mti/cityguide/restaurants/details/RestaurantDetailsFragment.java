@@ -72,7 +72,6 @@ public class RestaurantDetailsFragment extends BaseFragment implements MenuAdapt
         rvDinner = v.findViewById(R.id.rvDinner);
         lnrMenu = v.findViewById(R.id.lnrMenu);
         progressBar = v.findViewById(R.id.progressBar);
-
         imgRestaurant = v.findViewById(R.id.imgRestaurant);
         txtRestaurantName = v.findViewById(R.id.txtRestaurantName);
         txtRestaurantCategory = v.findViewById(R.id.txtRestaurantCategory);
@@ -102,7 +101,9 @@ public class RestaurantDetailsFragment extends BaseFragment implements MenuAdapt
 
     @Override
     public void onMenuItemClicked(Menu menu) {
-
+        if (!TextUtils.isEmpty(menu.getGradientDescription())) {
+            GradientActivity.startActivity(context, menu);
+        }
     }
 
     @Override

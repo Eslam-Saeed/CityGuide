@@ -28,6 +28,8 @@ public class Constants {
         public static final String IS_HOTEL = "is_hotel";
         public static final String RESTAURANT_ID = "restaurant_id";
         public static final String RESTAURANT = "restaurant";
+        public static final String MENU_ITEM = "menu_item";
+        public static final String HOTEL = "hotel";
     }
 
     public class Localization {
