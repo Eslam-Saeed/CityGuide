@@ -16,6 +16,7 @@ import com.mti.cityguide.base.BaseActivity;
 import com.mti.cityguide.helpers.Constants;
 import com.mti.cityguide.helpers.UIUtilities;
 import com.mti.cityguide.helpers.Utilities;
+import com.mti.cityguide.hotels.book.BookHotelActivity;
 import com.mti.cityguide.model.Hotel;
 import com.squareup.picasso.Picasso;
 
@@ -23,7 +24,7 @@ public class HotelDetailsActivity extends BaseActivity {
     private Hotel hotel;
     private RoundedImageView imgHotel;
     private ImageView imgLocation, imgRecommended;
-    private TextView txtHotelTitle, txtHotelDescription, txtHotelAvgPriceValue;
+    private TextView txtHotelTitle, txtHotelDescription, txtHotelAvgPriceValue, btnBook;
     private RatingBar ratingBar;
 
     public static void startActivity(Context context, Hotel hotel) {
@@ -68,6 +69,7 @@ public class HotelDetailsActivity extends BaseActivity {
         txtHotelTitle = findViewById(R.id.txtHotelTitle);
         txtHotelAvgPriceValue = findViewById(R.id.txtHotelAvgPriceValue);
         txtHotelDescription = findViewById(R.id.txtHotelDescription);
+        btnBook = findViewById(R.id.btnBook);
         ratingBar = findViewById(R.id.ratingBar);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
@@ -75,6 +77,11 @@ public class HotelDetailsActivity extends BaseActivity {
     @Override
     protected void setListeners() {
         imgLocation.setOnClickListener(v -> Utilities.openMap(this, hotel.getHotelLat(), hotel.getHotelLng()));
+        btnBook.setOnClickListener(v -> onBtnBookClicked());
 
+    }
+
+    private void onBtnBookClicked() {
+        BookHotelActivity.startActivity(this, hotel);
     }
 }

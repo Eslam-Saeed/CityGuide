@@ -59,6 +59,13 @@
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".hotels.book.BookHotelActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+
+
         <activity
             android:name=".splash.SplashActivity"
             android:screenOrientation="portrait"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,6 +8,7 @@
     android:layout_marginTop="@dimen/padding_xSmall"
     android:layout_marginEnd="@dimen/padding_xSmall"
     android:layout_marginBottom="@dimen/margin_mediums"
+    android:fillViewport="true"
     app:cardBackgroundColor="@color/white"
     tools:context=".hotels.details.HotelDetailsActivity">
 
@@ -133,6 +134,7 @@
             style="@style/FontSemiLight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/btnBook"
             android:layout_below="@id/txtHotelAvgPrice"
             android:layout_marginStart="@dimen/margin_medium"
             android:layout_marginTop="@dimen/margin_small"
@@ -141,6 +143,24 @@
             android:textColor="@color/fontColor"
             android:textSize="@dimen/font_medium"
             tools:text="Hotel description" />
+
+
+        <TextView
+            android:id="@+id/btnBook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/margin_xxxlarge"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_xxxlarge"
+            android:layout_marginBottom="@dimen/margin_xxlarge"
+            android:background="@drawable/bg_curved_accent_filled"
+            android:gravity="center"
+            android:paddingTop="@dimen/margin_small"
+            android:paddingBottom="@dimen/margin_small"
+            android:text="@string/book"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_lsmall" />
     </RelativeLayout>
 
-</RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

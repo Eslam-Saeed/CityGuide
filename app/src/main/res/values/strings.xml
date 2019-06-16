@@ -62,4 +62,13 @@
     <string name="breakfast">Breakfast</string>
     <string name="lunch">Lunch</string>
     <string name="dinner">Dinner</string>
+    <string name="logout">Logout</string>
+    <string name="book">Book</string>
+    <string name="days">Number of days</string>
+    <string name="room_type">Room Type</string>
+    <string name="persons">Persons</string>
+    <string name="singleA">Single</string>
+    <string name="doubleA">Double</string>
+    <string name="booked_success">Room booked successfully</string>
+    <string name="book_room">Book Room</string>
 </resources>

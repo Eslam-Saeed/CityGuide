@@ -8,12 +8,17 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.mti.cityguide.R;
 import com.mti.cityguide.base.BaseActivity;
 import com.mti.cityguide.common.FragmentViewPagerAdapter;
 import com.mti.cityguide.helpers.Constants;
+import com.mti.cityguide.login.LoginActivity;
+import com.mti.cityguide.model.User;
 
 import java.util.ArrayList;
 
@@ -68,5 +73,23 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void setListeners() {
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menuLogout) {
+            User.clearUserData(this);
+            LoginActivity.startActivity(this);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

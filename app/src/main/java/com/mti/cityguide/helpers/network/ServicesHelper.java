@@ -8,6 +8,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.mti.cityguide.helpers.DTO.ApiResponse;
 import com.mti.cityguide.helpers.DTO.AreaResponse;
 import com.mti.cityguide.helpers.DTO.CityResponse;
 import com.mti.cityguide.helpers.DTO.CountryResponse;
@@ -15,9 +16,11 @@ import com.mti.cityguide.helpers.DTO.HotelResponse;
 import com.mti.cityguide.helpers.DTO.LoginRequest;
 import com.mti.cityguide.helpers.DTO.LoginResponse;
 import com.mti.cityguide.helpers.DTO.MenuResponse;
+import com.mti.cityguide.helpers.DTO.ReservationResponse;
 import com.mti.cityguide.helpers.DTO.RestaurantCategoriesResponse;
 import com.mti.cityguide.helpers.DTO.RestaurantHotelFilter;
 import com.mti.cityguide.helpers.DTO.RestaurantResponse;
+import com.mti.cityguide.model.Reservation;
 import com.mti.cityguide.model.User;
 
 import org.json.JSONObject;
@@ -28,8 +31,8 @@ public class ServicesHelper {
     private static ServicesHelper mInstance;
     private RequestQueue mRequestQueue;
 
-    private final String BASE_URL = "https://morethink2.000webhostapp.com/cityguide/index.php/api/";
-    //        private final String BASE_URL = "http://192.168.1.10/cityguide/index.php/api/";
+    //    private final String BASE_URL = "https://morethink2.000webhostapp.com/cityguide/index.php/api/";
+    private final String BASE_URL = "http://192.168.1.7/cityguide/index.php/api/";
     private final String FAIL_CODE = "failed_fail";
     private final String LOGIN_URL = BASE_URL + "user/login";
     private final String REGISTER_URL = BASE_URL + "user/adduser";
@@ -40,10 +43,12 @@ public class ServicesHelper {
     private final String GET_RESTAURANTS = BASE_URL + "restaurant/getrestaurants?country_id=";
     private final String GET_RESTAURANTS_CATEGORIES = BASE_URL + "restaurantCategory/getrestaurantcategories";
     private final String GET_MENU = BASE_URL + "menu/getmenus?restaurant_id=";
+    private final String BOOK_URL = BASE_URL + "reservation/addreservation";
+    private final String GET_RESERVATIONS_URL = BASE_URL + "reservtion/addreservation?id=";
 
     public enum Tag {
         LOGIN,
-        REGISTER, COUNTRIES, CITIES, AREAS, HOTELS, RESTAURANTS, RESTAURANTS_CATEGORIES, GET_MENU
+        REGISTER, COUNTRIES, CITIES, AREAS, HOTELS, RESTAURANTS, RESTAURANTS_CATEGORIES, GET_MENU, Book, GET_RESERVATIONS
     }
 
     private ServicesHelper(Context context) {
@@ -234,6 +239,39 @@ public class ServicesHelper {
         } catch (Exception e) {
             e.printStackTrace();
             getMenuErrorListener.onErrorResponse(new VolleyError());
+        }
+    }
+
+    //===================================================================
+    public void book(Context context, Reservation reservation, Response.Listener<ApiResponse> bookSuccessListener, Response.ErrorListener bookErrorListener) {
+        try {
+            String reservationJson = GsonWrapper.getInstance().getGson().toJson(reservation, Reservation.class);
+            new CustomJsonObjectRequest(context, Request.Method.POST, BOOK_URL, new JSONObject(reservationJson), response -> {
+                if (response != null && !response.toString().contains(FAIL_CODE)) {
+                    ApiResponse apiResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), ApiResponse.class);
+                    bookSuccessListener.onResponse(apiResponse);
+                } else
+                    bookErrorListener.onErrorResponse(new VolleyError());
+            }, bookErrorListener, Tag.Book);
+        } catch (Exception e) {
+            e.printStackTrace();
+            bookErrorListener.onErrorResponse(new VolleyError());
+        }
+    }
+
+    //=============================== Get Reservations ====================================
+    public void getReservations(Context context, int userId, final Response.Listener<ReservationResponse> getReservationsSuccessListener, final Response.ErrorListener getReservationsErrorListener) {
+        try {
+            new CustomJsonObjectRequest(context, Request.Method.GET, GET_RESERVATIONS_URL + userId, null, response -> {
+                if (response != null && !response.toString().contains(FAIL_CODE)) {
+                    ReservationResponse reservationResponse = GsonWrapper.getInstance().getGson().fromJson(response.toString(), ReservationResponse.class);
+                    getReservationsSuccessListener.onResponse(reservationResponse);
+                } else
+                    getReservationsErrorListener.onErrorResponse(new VolleyError());
+            }, getReservationsErrorListener, Tag.HOTELS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            getReservationsErrorListener.onErrorResponse(new VolleyError());
         }
     }
 }

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/view_toolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtHotelTitle"
+                style="@style/FontSemiBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:gravity="center"
+                android:lines="1"
+                android:singleLine="true"
+                android:textColor="@color/fontColor"
+                android:textSize="@dimen/font_xxlarge"
+                tools:text="La Plaza" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tilDays"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewStart"
+                android:textColorHint="@color/colorAccent">
+
+                <EditText
+                    android:id="@+id/edtDays"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/days"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:paddingBottom="@dimen/margin_medium"
+                    android:text="1"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorAccent" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tilPersonNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewStart"
+                android:textColorHint="@color/colorAccent">
+
+                <EditText
+                    android:id="@+id/edtPersonNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/persons"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:paddingBottom="@dimen/margin_medium"
+                    android:text="1"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorAccent" />
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txtRoomTitle"
+                style="@style/FontSemiBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:lines="1"
+                android:singleLine="true"
+                android:text="@string/room_type"
+                android:textColor="@color/fontColor"
+                android:textSize="@dimen/font_xlarge" />
+
+            <RadioGroup
+                android:id="@+id/rgRoomType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginEnd="@dimen/margin_large"
+                android:layout_marginBottom="@dimen/margin_medium">
+
+                <RadioButton
+                    android:id="@+id/rbSingle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:checked="true"
+                    android:paddingStart="@dimen/margin_small"
+                    android:text="@string/singleA"
+                    android:textAlignment="viewStart"
+                    android:textColor="@drawable/sort_selector"
+                    android:textSize="@dimen/font_large" />
+
+                <RadioButton
+                    android:id="@+id/rbDouble"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:paddingStart="@dimen/margin_small"
+                    android:text="@string/doubleA"
+                    android:textAlignment="viewStart"
+                    android:textColor="@drawable/sort_selector"
+                    android:textSize="@dimen/font_large" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/txtHotelAvgPrice"
+                style="@style/FontSemiLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:gravity="start"
+                android:lines="1"
+                android:singleLine="true"
+                android:textColor="@color/fontColor"
+                android:textSize="@dimen/font_xlarge" />
+
+            <TextView
+                android:id="@+id/btnBook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_xxxlarge"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_xxxlarge"
+                android:layout_marginBottom="@dimen/margin_xxlarge"
+                android:background="@drawable/bg_curved_accent_filled"
+                android:gravity="center"
+                android:paddingTop="@dimen/margin_small"
+                android:paddingBottom="@dimen/margin_small"
+                android:text="@string/book"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_lsmall" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/progressBar"
+            layout="@layout/view_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

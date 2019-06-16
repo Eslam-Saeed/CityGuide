@@ -31,7 +31,7 @@ public class RestaurantsPresenter extends BasePresenter {
         this.listRestaurantCategories = new ArrayList<>();
     }
 
-    void loadCategories(){
+    void loadCategories() {
         ServicesHelper.getInstance(context).getRestaurantsCategories(context, getRestaurantsCategoriesSuccessListener, getErrorSuccessListener);
     }
 
