@@ -86,14 +86,13 @@ public class HomeActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.menuLogout) {
+        if (id == R.id.menuReservation) {
+            ReservationsActivity.startActivity(this);
+            return true;
+        } else if (id == R.id.menuLogout) {
             User.clearUserData(this);
             LoginActivity.startActivity(this);
             return true;
-        } else if (id == R.id.menuReservation) {
-            ReservationsActivity.startActivity(this);
-            return true;
-
         }
         return super.onOptionsItemSelected(item);
     }

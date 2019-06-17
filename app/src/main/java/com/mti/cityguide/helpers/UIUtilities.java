@@ -12,9 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-/**
- * Created by Eslam on 03/22/2019.
- */
 
 public class UIUtilities {
 

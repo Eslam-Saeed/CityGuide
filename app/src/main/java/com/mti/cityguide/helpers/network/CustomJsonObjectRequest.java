@@ -18,9 +18,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Eslam Mahmoud on 03/22/2019.
- */
+
 public class CustomJsonObjectRequest extends JsonObjectRequest {
     private static final int TIMEOUT_MS = 10000;
     static final int LONG_TIMEOUT_MS = 120000;

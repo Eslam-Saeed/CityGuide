@@ -10,9 +10,7 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.mti.cityguide.R;
 
-/**
- * Created by Eslam on 03/22/2019.
- */
+
 
 public class VolleyErrorHandler {
 

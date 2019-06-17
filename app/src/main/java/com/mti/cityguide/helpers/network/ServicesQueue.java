@@ -10,9 +10,6 @@ import com.squareup.okhttp.OkHttpClient;
 import java.util.concurrent.TimeUnit;
 
 
-/**
- * Created by Eslam on 03/22/2019.
- */
 
 public class ServicesQueue {
 

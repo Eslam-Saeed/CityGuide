@@ -4,9 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-/**
- * Created by Eslam on 03/22/2019.
- */
+
 public class ConnectionDetector {
 
     public static boolean isConnectingToInternet(Context context) {

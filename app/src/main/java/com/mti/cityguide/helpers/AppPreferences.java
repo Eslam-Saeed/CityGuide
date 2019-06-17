@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-/**
- * Created by Eslam on 03/22/2019.
- */
+
 
 public class AppPreferences {
     
