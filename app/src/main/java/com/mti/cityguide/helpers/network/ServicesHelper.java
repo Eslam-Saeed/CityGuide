@@ -44,7 +44,7 @@ public class ServicesHelper {
     private final String GET_RESTAURANTS_CATEGORIES = BASE_URL + "restaurantCategory/getrestaurantcategories";
     private final String GET_MENU = BASE_URL + "menu/getmenus?restaurant_id=";
     private final String BOOK_URL = BASE_URL + "reservation/addreservation";
-    private final String GET_RESERVATIONS_URL = BASE_URL + "reservtion/addreservation?id=";
+    private final String GET_RESERVATIONS_URL = BASE_URL + "reservation/getreservations?id=";
 
     public enum Tag {
         LOGIN,
@@ -268,7 +268,7 @@ public class ServicesHelper {
                     getReservationsSuccessListener.onResponse(reservationResponse);
                 } else
                     getReservationsErrorListener.onErrorResponse(new VolleyError());
-            }, getReservationsErrorListener, Tag.HOTELS);
+            }, getReservationsErrorListener, Tag.GET_RESERVATIONS);
         } catch (Exception e) {
             e.printStackTrace();
             getReservationsErrorListener.onErrorResponse(new VolleyError());

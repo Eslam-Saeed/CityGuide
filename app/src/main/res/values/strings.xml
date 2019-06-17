@@ -71,4 +71,6 @@
     <string name="doubleA">Double</string>
     <string name="booked_success">Room booked successfully</string>
     <string name="book_room">Book Room</string>
+    <string name="reservation">Reservation</string>
+    <string name="reservations">Reservations</string>
 </resources>

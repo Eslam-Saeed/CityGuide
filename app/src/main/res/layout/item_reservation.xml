@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_xSmall"
+        android:layout_marginTop="@dimen/padding_xSmall"
+        android:layout_marginEnd="@dimen/padding_xSmall"
+        android:layout_marginBottom="@dimen/margin_mediums"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/margin_vsmall"
+        app:cardElevation="@dimen/padding_xSmall">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/margin_medium">
+
+            <TextView
+                android:id="@+id/txtHotelTitle"
+                style="@style/FontSemiBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:lines="1"
+                android:singleLine="true"
+                android:textAlignment="viewStart"
+                android:textColor="@color/fontColor"
+                android:textSize="@dimen/font_xxlarge"
+                tools:text="La Plaza" />
+
+            <TextView
+                android:id="@+id/txtRoomType"
+                style="@style/FontSemiLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_medium"
+                android:lines="1"
+                android:singleLine="true"
+                android:textAlignment="viewStart"
+                android:textColor="@color/fontColor"
+                android:textSize="@dimen/font_large"
+                tools:text="Room type" />
+
+            <TextView
+                android:id="@+id/txtDays"
+                style="@style/FontSemiLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_medium"
+                android:lines="1"
+                android:singleLine="true"
+                android:textAlignment="viewStart"
+                android:textColor="@color/fontColor"
+                android:textSize="@dimen/font_large"
+                tools:text="Days" />
+
+            <TextView
+                android:id="@+id/txtNumPerson"
+                style="@style/FontSemiLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_medium"
+                android:lines="1"
+                android:singleLine="true"
+                android:textAlignment="viewStart"
+                android:textColor="@color/fontColor"
+                android:textSize="@dimen/font_large"
+                tools:text="Person count" />
+
+
+            <TextView
+                android:id="@+id/txtAvgPrice"
+                style="@style/FontSemiLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_medium"
+                android:lines="1"
+                android:singleLine="true"
+                android:textAlignment="viewStart"
+                android:textColor="@color/fontColor"
+                android:textSize="@dimen/font_large"
+                tools:text="Person count" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

@@ -19,6 +19,7 @@ import com.mti.cityguide.common.FragmentViewPagerAdapter;
 import com.mti.cityguide.helpers.Constants;
 import com.mti.cityguide.login.LoginActivity;
 import com.mti.cityguide.model.User;
+import com.mti.cityguide.reservation_listing.ReservationsActivity;
 
 import java.util.ArrayList;
 
@@ -89,6 +90,10 @@ public class HomeActivity extends BaseActivity {
             User.clearUserData(this);
             LoginActivity.startActivity(this);
             return true;
+        } else if (id == R.id.menuReservation) {
+            ReservationsActivity.startActivity(this);
+            return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

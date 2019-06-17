@@ -59,13 +59,10 @@
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".hotels.book.BookHotelActivity"
+        <activity
+            android:name=".hotels.book.BookHotelActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
-
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".splash.SplashActivity"
             android:screenOrientation="portrait"
@@ -86,6 +83,11 @@
                     android:scheme="http" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".reservation_listing.ReservationsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>

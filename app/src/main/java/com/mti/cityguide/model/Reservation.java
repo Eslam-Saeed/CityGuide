@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 public class Reservation implements Parcelable {
     @SerializedName("reservation_id")
     @Expose
-    private int id ;
+    private int id;
     @SerializedName("reservation_user_id")
     private int userId;
     @SerializedName("reservation_hotel_id")
@@ -22,6 +22,8 @@ public class Reservation implements Parcelable {
     private int daysCount;
     @SerializedName("reservation_avg_price")
     private int avgPrice;
+    @SerializedName("hotel_name")
+    private String hotelTitle;
     @SerializedName("reservation_created_at")
     private String createdAt;
 
@@ -36,6 +38,7 @@ public class Reservation implements Parcelable {
         personsCount = in.readInt();
         daysCount = in.readInt();
         avgPrice = in.readInt();
+        hotelTitle = in.readString();
         createdAt = in.readString();
     }
 
@@ -48,6 +51,7 @@ public class Reservation implements Parcelable {
         dest.writeInt(personsCount);
         dest.writeInt(daysCount);
         dest.writeInt(avgPrice);
+        dest.writeString(hotelTitle);
         dest.writeString(createdAt);
     }
 
@@ -130,5 +134,13 @@ public class Reservation implements Parcelable {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getHotelTitle() {
+        return hotelTitle;
+    }
+
+    public void setHotelTitle(String hotelTitle) {
+        this.hotelTitle = hotelTitle;
     }
 }
