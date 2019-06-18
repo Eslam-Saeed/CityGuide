@@ -1,6 +1,7 @@
 package com.mti.cityguide.hotels.book;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -30,6 +31,10 @@ public class BookHotelPresenter extends BasePresenter {
     }
 
     void book() {
+        if (TextUtils.isEmpty(reservation.getStartAt()) || TextUtils.isEmpty(reservation.getEndAt())) {
+            view.showMessage(context.getResources().getString(R.string.set_start_end_date_book));
+            return;
+        }
         if (ConnectionDetector.isConnected(context)) {
             view.showProgress(true);
             ServicesHelper.getInstance(context).book(context, reservation, bookSuccessListener, bookErrorListener);

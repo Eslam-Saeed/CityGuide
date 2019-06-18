@@ -131,12 +131,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_marginBottom="@dimen/margin_medium"
                 android:gravity="start"
                 android:lines="1"
                 android:singleLine="true"
                 android:textColor="@color/fontColor"
                 android:textSize="@dimen/font_xlarge" />
+
+            <TextView
+                android:id="@+id/txtStartAt"
+                style="@style/FontSemiBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:drawableStart="@drawable/ic_start_end"
+                android:drawablePadding="@dimen/margin_medium"
+                android:paddingStart="@dimen/margin_small"
+                android:paddingTop="@dimen/margin_small"
+                android:paddingEnd="@dimen/margin_small"
+                android:text="@string/start_at"
+                android:textSize="@dimen/font_large" />
+
+            <TextView
+                android:id="@+id/txtEndAt"
+                style="@style/FontSemiBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:drawableStart="@drawable/ic_start_end"
+                android:drawablePadding="@dimen/margin_medium"
+                android:paddingStart="@dimen/margin_small"
+                android:paddingTop="@dimen/margin_small"
+                android:paddingEnd="@dimen/margin_small"
+                android:text="@string/end_at"
+                android:textSize="@dimen/font_large" />
 
             <TextView
                 android:id="@+id/btnBook"

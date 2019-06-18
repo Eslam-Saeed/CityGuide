@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mti.cityguide.R;
+import com.mti.cityguide.helpers.DateTimeHelper;
 import com.mti.cityguide.helpers.UIUtilities;
 import com.mti.cityguide.model.Reservation;
 
@@ -40,6 +41,11 @@ public class ReservationsAdapter extends RecyclerView.Adapter<ReservationsAdapte
             UIUtilities.displayText(myViewHolder.txtDays, "Days : " + reservation.getDaysCount());
             UIUtilities.displayText(myViewHolder.txtNumPerson, "Person : " + reservation.getPersonsCount());
             UIUtilities.displayText(myViewHolder.txtAvgPrice, "Avg Price : " + reservation.getAvgPrice() + "$");
+
+            UIUtilities.displayText(myViewHolder.txtStartAt, "Starts at: " + DateTimeHelper.formatDate(DateTimeHelper.SERVER_FORMAT,
+                    DateTimeHelper.DD_MM, reservation.getStartAt()));
+            UIUtilities.displayText(myViewHolder.txtEndAt, "Ends at: " + DateTimeHelper.formatDate(DateTimeHelper.SERVER_FORMAT,
+                    DateTimeHelper.DD_MM, reservation.getEndAt()));
         }
     }
 
@@ -52,7 +58,7 @@ public class ReservationsAdapter extends RecyclerView.Adapter<ReservationsAdapte
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtHotelTitle, txtRoomType, txtDays, txtNumPerson, txtAvgPrice;
+        private TextView txtHotelTitle, txtRoomType, txtDays, txtNumPerson, txtAvgPrice, txtStartAt, txtEndAt;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +67,8 @@ public class ReservationsAdapter extends RecyclerView.Adapter<ReservationsAdapte
             txtDays = itemView.findViewById(R.id.txtDays);
             txtNumPerson = itemView.findViewById(R.id.txtNumPerson);
             txtAvgPrice = itemView.findViewById(R.id.txtAvgPrice);
+            txtStartAt = itemView.findViewById(R.id.txtStartAt);
+            txtEndAt = itemView.findViewById(R.id.txtEndAt);
         }
     }
 }

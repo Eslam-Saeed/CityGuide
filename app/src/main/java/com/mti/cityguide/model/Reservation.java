@@ -24,11 +24,16 @@ public class Reservation implements Parcelable {
     private int avgPrice;
     @SerializedName("hotel_name")
     private String hotelTitle;
+    @SerializedName("reservation_start_at")
+    private String startAt;
+    @SerializedName("reservation_end_at")
+    private String endAt;
     @SerializedName("reservation_created_at")
     private String createdAt;
 
     public Reservation() {
     }
+
 
     protected Reservation(Parcel in) {
         id = in.readInt();
@@ -39,6 +44,8 @@ public class Reservation implements Parcelable {
         daysCount = in.readInt();
         avgPrice = in.readInt();
         hotelTitle = in.readString();
+        startAt = in.readString();
+        endAt = in.readString();
         createdAt = in.readString();
     }
 
@@ -52,6 +59,8 @@ public class Reservation implements Parcelable {
         dest.writeInt(daysCount);
         dest.writeInt(avgPrice);
         dest.writeString(hotelTitle);
+        dest.writeString(startAt);
+        dest.writeString(endAt);
         dest.writeString(createdAt);
     }
 
@@ -71,6 +80,22 @@ public class Reservation implements Parcelable {
             return new Reservation[size];
         }
     };
+
+    public String getStartAt() {
+        return startAt;
+    }
+
+    public void setStartAt(String startAt) {
+        this.startAt = startAt;
+    }
+
+    public String getEndAt() {
+        return endAt;
+    }
+
+    public void setEndAt(String endAt) {
+        this.endAt = endAt;
+    }
 
     public int getId() {
         return id;

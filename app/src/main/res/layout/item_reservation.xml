@@ -91,6 +91,34 @@
                 android:textSize="@dimen/font_large"
                 tools:text="Person count" />
 
+
+            <TextView
+                android:id="@+id/txtStartAt"
+                style="@style/FontSemiLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_xSmall"
+                android:lines="1"
+                android:singleLine="true"
+                android:textAlignment="viewStart"
+                android:textColor="@color/fontColor"
+                android:textSize="@dimen/font_large"
+                tools:text="Person count" />
+
+            <TextView
+                android:id="@+id/txtEndAt"
+                style="@style/FontSemiLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_medium"
+                android:lines="1"
+                android:singleLine="true"
+                android:textAlignment="viewStart"
+                android:textColor="@color/fontColor"
+                android:textSize="@dimen/font_large"
+                tools:text="Person count" />
+
+
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

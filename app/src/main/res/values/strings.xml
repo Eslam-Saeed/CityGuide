@@ -73,4 +73,7 @@
     <string name="book_room">Book Room</string>
     <string name="reservation">Reservation</string>
     <string name="reservations">Reservations</string>
+    <string name="start_at">Start at</string>
+    <string name="end_at">End at</string>
+    <string name="set_start_end_date_book">You have to set start and end date</string>
 </resources>
